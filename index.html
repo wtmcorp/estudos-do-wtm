@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Estudos 2 Meses — Analista de Dados</title>
+    <meta name="description" content="Plano completo de estudos para transição de carreira para Analista de Dados em 2 meses">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <div class="logo-text">
+                    <span class="logo-title">Data Path</span>
+                    <span class="logo-subtitle">Plano 2 Meses</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        </div>
+
+        <div class="sidebar-progress">
+            <div class="progress-ring-container">
+                <svg class="progress-ring" viewBox="0 0 120 120">
+                    <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
+                    <circle class="progress-ring-fill" id="progressRing" cx="60" cy="60" r="52"/>
+                </svg>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+            <p class="progress-label">Progresso Geral</p>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Dashboard</span>
+            </li>
+            <li class="nav-item" data-section="week12">
+                <span class="nav-icon">📗</span>
+                <span class="nav-label">Semana 1–2: Excel</span>
+                <span class="nav-badge" id="badge-week12">0/8</span>
+            </li>
+            <li class="nav-item" data-section="week34">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Semana 3–4: Power BI</span>
+                <span class="nav-badge" id="badge-week34">0/8</span>
+            </li>
+            <li class="nav-item" data-section="week56">
+                <span class="nav-icon">🗄️</span>
+                <span class="nav-label">Semana 5–6: SQL</span>
+                <span class="nav-badge" id="badge-week56">0/8</span>
+            </li>
+            <li class="nav-item" data-section="week78">
+                <span class="nav-icon">🚀</span>
+                <span class="nav-label">Semana 7–8: Projetos</span>
+                <span class="nav-badge" id="badge-week78">0/9</span>
+            </li>
+            <li class="nav-item" data-section="resources">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">Recursos</span>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <div class="streak-counter">
+                <span class="streak-icon">🔥</span>
+                <span class="streak-text" id="streakCount">0 dias seguidos</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+        <!-- DASHBOARD -->
+        <section class="content-section active" id="section-dashboard">
+            <div class="section-header">
+                <h1>Bem-vindo ao seu Plano de Estudos</h1>
+                <p class="section-subtitle">2 meses para se tornar um Analista de Dados competitivo</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card stat-card--blue">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="daysRemaining">60</span>
+                        <span class="stat-label">Dias Restantes</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--green">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="completedTasks">0</span>
+                        <span class="stat-label">Tarefas Completas</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--purple">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalTasks">33</span>
+                        <span class="stat-label">Total de Tarefas</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-card--orange">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="currentWeek">1</span>
+                        <span class="stat-label">Semana Atual</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-overview">
+                <h2>Linha do Tempo</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-week="12">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Semana 1–2</h3>
+                            <p>Excel Avançado</p>
+                            <div class="timeline-bar"><div class="timeline-fill" id="fill-week12"></div></div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-week="34">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Semana 3–4</h3>
+                            <p>Power BI</p>
+                            <div class="timeline-bar"><div class="timeline-fill" id="fill-week34"></div></div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-week="56">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Semana 5–6</h3>
+                            <p>SQL Básico</p>
+                            <div class="timeline-bar"><div class="timeline-fill" id="fill-week56"></div></div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-week="78">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Semana 7–8</h3>
+                            <p>3 Projetos Fortes</p>
+                            <div class="timeline-bar"><div class="timeline-fill" id="fill-week78"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="daily-tip">
+                <div class="tip-icon">💡</div>
+                <div class="tip-content">
+                    <h3>Dica do Dia</h3>
+                    <p id="dailyTip">Consistência vence intensidade. Estude todos os dias, mesmo que 30 minutos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEEK 1-2: EXCEL -->
+        <section class="content-section" id="section-week12">
+            <div class="section-header">
+                <div class="week-badge week-badge--green">SEMANA 1–2</div>
+                <h1>Excel Avançado Focado em Dados</h1>
+                <p class="section-subtitle">Domine as ferramentas essenciais que todo analista de dados precisa</p>
+            </div>
+
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">01</span>
+                        <h3>Tabela Dinâmica</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w12-1"> Criar tabela dinâmica a partir de dataset bruto</label>
+                        <label class="check-item"><input type="checkbox" data-task="w12-2"> Agrupar dados por categoria, data e região</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>Como transformar dados brutos em tabelas dinâmicas</li>
+                            <li>Filtros, segmentação de dados e campos calculados</li>
+                            <li>Agrupamento por datas (mês, trimestre, ano)</li>
+                            <li>Atualização automática de tabelas dinâmicas</li>
+                        </ul>
+                        <h4>🎯 Exercício prático:</h4>
+                        <p>Pegue um dataset de vendas (pode baixar no Kaggle) e crie uma tabela dinâmica que mostre vendas por mês, por produto e por região. Adicione segmentação de dados.</p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">02</span>
+                        <h3>PROCV / XLOOKUP</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w12-3"> Dominar PROCV com correspondência exata e aproximada</label>
+                        <label class="check-item"><input type="checkbox" data-task="w12-4"> Dominar XLOOKUP e entender vantagens sobre PROCV</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>PROCV: sintaxe, erros comuns, limitações</li>
+                            <li>XLOOKUP: busca bidirecional, valores padrão</li>
+                            <li>Quando usar cada uma</li>
+                            <li>Combinação com CORRESP e ÍNDICE</li>
+                        </ul>
+                        <h4>🎯 Exercício prático:</h4>
+                        <p>Crie duas planilhas: uma de pedidos e outra de clientes. Use PROCV para trazer o nome do cliente pelo ID. Depois refaça com XLOOKUP.</p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">03</span>
+                        <h3>Análise de Dataset</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w12-5"> Analisar um dataset completo do início ao fim</label>
+                        <label class="check-item"><input type="checkbox" data-task="w12-6"> Criar gráficos profissionais a partir dos dados</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>Como explorar dados: estatísticas descritivas</li>
+                            <li>Identificar padrões e outliers</li>
+                            <li>Gráficos: barras, linhas, dispersão, combinados</li>
+                            <li>Formatação condicional para destacar insights</li>
+                        </ul>
+                        <h4>🎯 Exercício prático:</h4>
+                        <p>Baixe um dataset do Kaggle (ex: Superstore Sales). Analise tendências de vendas, identifique os melhores produtos e crie 3 gráficos profissionais.</p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">04</span>
+                        <h3>Limpeza de Dados</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w12-7"> Limpar dataset com dados sujos</label>
+                        <label class="check-item"><input type="checkbox" data-task="w12-8"> Padronizar formatos e tratar valores ausentes</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>Remover duplicatas e espaços extras (ARRUMAR/TRIM)</li>
+                            <li>Padronizar texto (MAIÚSCULA, MINÚSCULA, PRI.MAIÚSCULA)</li>
+                            <li>Tratar valores em branco e #N/D</li>
+                            <li>Texto para Colunas, Flash Fill</li>
+                            <li>Validação de dados</li>
+                        </ul>
+                        <h4>🎯 Exercício prático:</h4>
+                        <p>Pegue um dataset "sujo" (com espaços, duplicatas, formatos errados) e limpe completamente usando as funções aprendidas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEEK 3-4: POWER BI -->
+        <section class="content-section" id="section-week34">
+            <div class="section-header">
+                <div class="week-badge week-badge--blue">SEMANA 3–4</div>
+                <h1>Power BI</h1>
+                <p class="section-subtitle">Transforme dados em dashboards interativos e impressionantes</p>
+            </div>
+
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">01</span>
+                        <h3>Fundamentos e Interface</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w34-1"> Instalar Power BI e conhecer a interface</label>
+                        <label class="check-item"><input type="checkbox" data-task="w34-2"> Importar dados de Excel, CSV e Web</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>Interface do Power BI Desktop (3 visões)</li>
+                            <li>Power Query: importar e transformar dados</li>
+                            <li>Tipos de dados e formatação</li>
+                            <li>Publicação no Power BI Service</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">02</span>
+                        <h3>Modelagem de Dados</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w34-3"> Criar relacionamentos entre tabelas</label>
+                        <label class="check-item"><input type="checkbox" data-task="w34-4"> Entender modelo estrela (Star Schema)</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>Tabelas fato vs tabelas dimensão</li>
+                            <li>Relacionamentos 1:N e N:N</li>
+                            <li>Tabela calendário (dCalendario)</li>
+                            <li>Boas práticas de modelagem</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">03</span>
+                        <h3>Dashboards</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w34-5"> Criar dashboard completo com KPIs</label>
+                        <label class="check-item"><input type="checkbox" data-task="w34-6"> Aplicar design profissional e interatividade</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>Visuais: cartões, gráficos, mapas, tabelas</li>
+                            <li>Filtros e segmentação de dados (Slicers)</li>
+                            <li>Drill-down e drill-through</li>
+                            <li>Design: cores, alinhamento, hierarquia visual</li>
+                            <li>Bookmarks e navegação entre páginas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">04</span>
+                        <h3>DAX e Métricas</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w34-7"> Criar medidas com DAX básico</label>
+                        <label class="check-item"><input type="checkbox" data-task="w34-8"> Calcular KPIs: YTD, variação %, ranking</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>Medidas vs Colunas Calculadas</li>
+                            <li>SUM, AVERAGE, COUNT, DISTINCTCOUNT</li>
+                            <li>CALCULATE, FILTER, ALL</li>
+                            <li>Inteligência temporal: TOTALYTD, SAMEPERIODLASTYEAR</li>
+                            <li>FORMAT e funções de texto</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEEK 5-6: SQL -->
+        <section class="content-section" id="section-week56">
+            <div class="section-header">
+                <div class="week-badge week-badge--amber">SEMANA 5–6</div>
+                <h1>SQL Básico</h1>
+                <p class="section-subtitle">Consulte bancos de dados com confiança — o essencial que você precisa</p>
+            </div>
+
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">01</span>
+                        <h3>SELECT e Filtros</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w56-1"> Escrever consultas SELECT básicas</label>
+                        <label class="check-item"><input type="checkbox" data-task="w56-2"> Usar WHERE, ORDER BY, LIMIT, DISTINCT</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>SELECT *, SELECT colunas específicas</li>
+                            <li>WHERE com operadores: =, !=, >, <, BETWEEN, IN, LIKE</li>
+                            <li>ORDER BY ASC/DESC</li>
+                            <li>LIMIT e OFFSET</li>
+                            <li>Alias com AS</li>
+                        </ul>
+                        <h4>🎯 Onde praticar:</h4>
+                        <p>Use o <strong>SQLite Online</strong> ou <strong>DB Fiddle</strong> para praticar sem instalar nada.</p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">02</span>
+                        <h3>JOIN</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w56-3"> Dominar INNER JOIN</label>
+                        <label class="check-item"><input type="checkbox" data-task="w56-4"> Entender LEFT JOIN, RIGHT JOIN, FULL JOIN</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>INNER JOIN: combinar tabelas pela chave</li>
+                            <li>LEFT JOIN: manter todos da tabela esquerda</li>
+                            <li>RIGHT JOIN e FULL OUTER JOIN</li>
+                            <li>JOIN com múltiplas condições</li>
+                        </ul>
+                        <h4>🎯 Exercício prático:</h4>
+                        <p>Crie tabelas de pedidos e clientes. Faça JOIN para listar pedidos com nome do cliente. Teste LEFT JOIN para ver clientes sem pedidos.</p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">03</span>
+                        <h3>GROUP BY e Agregações</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w56-5"> Agrupar e sumarizar dados</label>
+                        <label class="check-item"><input type="checkbox" data-task="w56-6"> Usar HAVING para filtrar grupos</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>GROUP BY com COUNT, SUM, AVG, MIN, MAX</li>
+                            <li>HAVING vs WHERE</li>
+                            <li>Agrupar por múltiplas colunas</li>
+                            <li>Combinar GROUP BY com JOIN</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-number">04</span>
+                        <h3>Consultas Avançadas</h3>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" data-task="w56-7"> Criar subqueries simples</label>
+                        <label class="check-item"><input type="checkbox" data-task="w56-8"> Usar CASE WHEN e funções de data</label>
+                    </div>
+                    <div class="module-resources">
+                        <h4>📖 O que estudar:</h4>
+                        <ul>
+                            <li>Subqueries no WHERE e no FROM</li>
+                            <li>CASE WHEN para criar categorias</li>
+                            <li>COALESCE e NULLIF</li>
+                            <li>Funções de data: YEAR, MONTH, DATEDIFF</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEEK 7-8: PROJECTS -->
+        <section class="content-section" id="section-week78">
+            <div class="section-header">
+                <div class="week-badge week-badge--red">SEMANA 7–8</div>
+                <h1>3 Projetos Fortes</h1>
+                <p class="section-subtitle">Projetos reais ligados à sua experiência — o que vai te destacar</p>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card project-card--logistics">
+                    <div class="project-header">
+                        <span class="project-number">PROJETO 1</span>
+                        <h3>Dashboard de Performance Logística</h3>
+                    </div>
+                    <div class="project-body">
+                        <h4>📊 Métricas obrigatórias:</h4>
+                        <div class="checklist">
+                            <label class="check-item"><input type="checkbox" data-task="w78-1"> Pedidos por dia (volume e tendência)</label>
+                            <label class="check-item"><input type="checkbox" data-task="w78-2"> Tempo de processamento (média, mediana)</label>
+                            <label class="check-item"><input type="checkbox" data-task="w78-3"> Atraso por transportadora (ranking)</label>
+                        </div>
+                        <h4>🛠️ Como construir:</h4>
+                        <ul>
+                            <li>Simule dados de 6 meses de operação logística</li>
+                            <li>Crie no Excel e depois replique no Power BI</li>
+                            <li>Inclua filtros por período, transportadora e status</li>
+                            <li>Adicione KPIs: SLA atingido, taxa de atraso, tempo médio</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card project-card--stock">
+                    <div class="project-header">
+                        <span class="project-number">PROJETO 2</span>
+                        <h3>Análise de Estoque</h3>
+                    </div>
+                    <div class="project-body">
+                        <h4>📊 Métricas obrigatórias:</h4>
+                        <div class="checklist">
+                            <label class="check-item"><input type="checkbox" data-task="w78-4"> Giro de estoque por produto</label>
+                            <label class="check-item"><input type="checkbox" data-task="w78-5"> Previsão de falta (estoque crítico)</label>
+                            <label class="check-item"><input type="checkbox" data-task="w78-6"> Curva ABC de produtos</label>
+                        </div>
+                        <h4>🛠️ Como construir:</h4>
+                        <ul>
+                            <li>Crie dataset com SKUs, entradas, saídas e saldo</li>
+                            <li>Calcule giro = vendas / estoque médio</li>
+                            <li>Sinalize produtos com estoque abaixo do mínimo</li>
+                            <li>Monte curva ABC (80/15/5) com Pareto</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card project-card--finance">
+                    <div class="project-header">
+                        <span class="project-number">PROJETO 3</span>
+                        <h3>Dashboard Financeiro de Operação</h3>
+                    </div>
+                    <div class="project-body">
+                        <h4>📊 Métricas obrigatórias:</h4>
+                        <div class="checklist">
+                            <label class="check-item"><input type="checkbox" data-task="w78-7"> Custo logístico total e por operação</label>
+                            <label class="check-item"><input type="checkbox" data-task="w78-8"> Volume de pedidos vs custo</label>
+                            <label class="check-item"><input type="checkbox" data-task="w78-9"> Lucro por região</label>
+                        </div>
+                        <h4>🛠️ Como construir:</h4>
+                        <ul>
+                            <li>Combine dados de vendas, custos e frete</li>
+                            <li>Calcule margem = (receita - custo) / receita</li>
+                            <li>Crie mapa de calor por região</li>
+                            <li>Dashboard com comparativo mês a mês</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESOURCES -->
+        <section class="content-section" id="section-resources">
+            <div class="section-header">
+                <h1>Recursos e Links Úteis</h1>
+                <p class="section-subtitle">Tudo que você precisa em um só lugar</p>
+            </div>
+
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3>📗 Excel</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://www.youtube.com/results?search_query=excel+avan%C3%A7ado+analise+de+dados" target="_blank">YouTube — Excel Avançado para Dados</a></li>
+                        <li><a href="https://www.kaggle.com/datasets" target="_blank">Kaggle — Datasets gratuitos</a></li>
+                        <li><a href="https://support.microsoft.com/pt-br/excel" target="_blank">Documentação oficial Microsoft Excel</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>📊 Power BI</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://learn.microsoft.com/pt-br/power-bi/" target="_blank">Microsoft Learn — Power BI</a></li>
+                        <li><a href="https://www.youtube.com/results?search_query=power+bi+completo" target="_blank">YouTube — Curso Power BI</a></li>
+                        <li><a href="https://dax.guide/" target="_blank">DAX Guide — Referência completa</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>🗄️ SQL</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://sqliteonline.com/" target="_blank">SQLite Online — Pratique no navegador</a></li>
+                        <li><a href="https://www.w3schools.com/sql/" target="_blank">W3Schools — Tutorial SQL</a></li>
+                        <li><a href="https://www.hackerrank.com/domains/sql" target="_blank">HackerRank — Exercícios SQL</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>🚀 Portfolio e Carreira</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://github.com/" target="_blank">GitHub — Publique seus projetos</a></li>
+                        <li><a href="https://www.novypro.com/" target="_blank">NovyPro — Portfolio Power BI</a></li>
+                        <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn — Otimize seu perfil</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
