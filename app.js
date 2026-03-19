@@ -41,22 +41,56 @@ function saveStreak(streak) {
 }
 
 // ===== NAVIGATION =====
+let luckysheetInitialized = false;
+
 function initNavigation() {
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('.content-section');
 
+    function activateTab(target) {
+        navItems.forEach(n => n.classList.remove('active'));
+        const activeNav = document.querySelector(`.nav-item[data-section="${target}"]`);
+        if (activeNav) activeNav.classList.add('active');
+
+        sections.forEach(s => s.classList.remove('active'));
+        const targetSection = document.getElementById(`section-${target}`);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        // Inicializa o Luckysheet se a aba of selecionada pela primeira vez
+        if (target === 'excel-practice' && !luckysheetInitialized) {
+            if (typeof luckysheet !== 'undefined') {
+                setTimeout(() => {
+                    luckysheet.create({
+                        container: 'luckysheet-container',
+                        lang: 'pt',
+                        showinfobar: false,
+                        data: [{
+                            "name": "Planilha Prática",
+                            "color": "",
+                            "status": "1",
+                            "order": "0",
+                            "data": [],
+                            "config": {},
+                            "index": 0
+                        }]
+                    });
+                    luckysheetInitialized = true;
+                }, 100); // pequeno timeout para garantir que o DOM renderizou
+            }
+        }
+    }
+
+    // Carregar aba salva ou ir para dashboard
+    const savedTab = localStorage.getItem('datapath_last_tab') || 'dashboard';
+    activateTab(savedTab);
+
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const target = item.dataset.section;
-
-            navItems.forEach(n => n.classList.remove('active'));
-            item.classList.add('active');
-
-            sections.forEach(s => s.classList.remove('active'));
-            const targetSection = document.getElementById(`section-${target}`);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
+            activateTab(target);
+            localStorage.setItem('datapath_last_tab', target);
 
             // Close sidebar on mobile
             const sidebar = document.getElementById('sidebar');
@@ -228,6 +262,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAllStats();
     updateStreak();
     setDailyTip();
+    initFloatingTools();
+    initNeuralAudio();
+    initFlashcards();
+    initSqlSimulator();
 
     // Animate stats on load
     setTimeout(() => {
@@ -483,11 +521,441 @@ function showResults() {
     document.getElementById('quizResultSubtitle').textContent = subtitle;
 
     // Review
-    const reviewEl = document.getElementById('quizResultReview');
-    reviewEl.innerHTML = quizState.answers.map((a, i) =>
+    document.getElementById('quizResultReview').innerHTML = quizState.answers.map((a, i) =>
         `<div class="review-item ${a.correct ? 'correct' : 'wrong'}">
             <span>${a.correct ? '✅' : '❌'}</span>
             <span>${i + 1}. ${a.q.substring(0, 60)}${a.q.length > 60 ? '...' : ''}</span>
         </div>`
     ).join('');
+}
+
+// ===== FLOATING TOOLS LOGIC =====
+function initFloatingTools() {
+    const btnPomodoro = document.getElementById('btnPomodoro');
+    const btnNotes = document.getElementById('btnNotes');
+    const btnNeuralAudio = document.getElementById('btnNeuralAudio');
+
+    const widgetPomodoro = document.getElementById('widgetPomodoro');
+    const widgetNotes = document.getElementById('widgetNotes');
+    const widgetNeuralAudio = document.getElementById('widgetNeuralAudio');
+
+    const closeBtns = document.querySelectorAll('.close-widget');
+
+    function toggleWidget(widgetConfig) {
+        document.querySelectorAll('.tool-widget').forEach(w => {
+            if (w !== widgetConfig) w.classList.remove('active');
+        });
+        widgetConfig.classList.toggle('active');
+    }
+
+    if (btnPomodoro) btnPomodoro.addEventListener('click', () => toggleWidget(widgetPomodoro));
+    if (btnNotes) btnNotes.addEventListener('click', () => toggleWidget(widgetNotes));
+    if (btnNeuralAudio) btnNeuralAudio.addEventListener('click', () => toggleWidget(widgetNeuralAudio));
+
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.getElementById(btn.dataset.widget).classList.remove('active');
+        });
+    });
+
+    // Notes Logic
+    const quickNotes = document.getElementById('quickNotes');
+    const notesSavedLabel = document.getElementById('notesSavedLabel');
+    const clearNotesBtn = document.getElementById('clearNotesBtn');
+    let typingTimer;
+
+    if (quickNotes) {
+        quickNotes.value = localStorage.getItem('datapath_quicknotes') || '';
+
+        quickNotes.addEventListener('input', () => {
+            notesSavedLabel.style.display = 'none';
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                localStorage.setItem('datapath_quicknotes', quickNotes.value);
+                notesSavedLabel.style.display = 'inline-block';
+                setTimeout(() => notesSavedLabel.style.display = 'none', 2000);
+            }, 800);
+        });
+
+        if (clearNotesBtn) {
+            clearNotesBtn.addEventListener('click', () => {
+                quickNotes.value = '';
+                localStorage.removeItem('datapath_quicknotes');
+            });
+        }
+    }
+
+    // Pomodoro Logic
+    let pomoInterval;
+    let pomoTime = 25 * 60; // 25 minutes
+    let isPomoRunning = false;
+    let isBreak = false;
+
+    const pomoDisplay = document.getElementById('pomodoroTime');
+    const pomoStart = document.getElementById('pomoStart');
+    const pomoBreak = document.getElementById('pomoBreak');
+    const pomoReset = document.getElementById('pomoReset');
+
+    function updatePomoDisplay() {
+        if (!pomoDisplay) return;
+        const m = Math.floor(pomoTime / 60).toString().padStart(2, '0');
+        const s = (pomoTime % 60).toString().padStart(2, '0');
+        pomoDisplay.textContent = `${m}:${s}`;
+
+        if (isPomoRunning) {
+            document.title = `(${m}:${s}) ${isBreak ? 'Pausa' : 'Foco'} - Plano 2 Meses`;
+        } else {
+            document.title = 'Plano de Estudos 2 Meses — Analista de Dados';
+        }
+    }
+
+    function startTimer() {
+        if (isPomoRunning) return;
+        isPomoRunning = true;
+        pomoInterval = setInterval(() => {
+            if (pomoTime > 0) {
+                pomoTime--;
+                updatePomoDisplay();
+            } else {
+                clearInterval(pomoInterval);
+                isPomoRunning = false;
+
+                // Emite um pequeno som via Web Audio API
+                try {
+                    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                    const osc = ctx.createOscillator();
+                    osc.connect(ctx.destination);
+                    osc.frequency.value = 800; // Hz
+                    osc.start();
+                    setTimeout(() => osc.stop(), 500);
+                } catch (e) { }
+
+                alert(isBreak ? "Pausa encerrada! Volte ao estudo com foco total." : "Ciclo concluído! Faça uma pequena pausa e caminhe.");
+                updatePomoDisplay();
+            }
+        }, 1000);
+    }
+
+    if (pomoStart) {
+        pomoStart.addEventListener('click', () => {
+            if (isPomoRunning && !isBreak) return; // already running focus
+            clearInterval(pomoInterval);
+            isPomoRunning = false;
+            isBreak = false;
+            if (pomoTime === 5 * 60) pomoTime = 25 * 60; // back to focus
+            updatePomoDisplay();
+            startTimer();
+        });
+    }
+
+    if (pomoBreak) {
+        pomoBreak.addEventListener('click', () => {
+            if (isPomoRunning && isBreak) return;
+            clearInterval(pomoInterval);
+            isPomoRunning = false;
+            isBreak = true;
+            pomoTime = 5 * 60;
+            updatePomoDisplay();
+            startTimer();
+        });
+    }
+
+    if (pomoReset) {
+        pomoReset.addEventListener('click', () => {
+            clearInterval(pomoInterval);
+            isPomoRunning = false;
+            isBreak = false;
+            pomoTime = 25 * 60;
+            updatePomoDisplay();
+        });
+    }
+}
+
+// ===== NEURAL AUDIO V2 (WEBAUDIO API) =====
+function initNeuralAudio() {
+    let ctx;
+
+    // Brown Noise Generator Node
+    let brownNoiseNode, brownGain;
+    let isBrownPlaying = false;
+
+    // Gamma Isochronic Node
+    let gammaOsc, gammaGain, gammaLfo, gammaLfoGain;
+    let isGammaPlaying = false;
+
+    function initAudioCtx() {
+        if (!ctx) {
+            ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+    }
+
+    function createBrownNoise() {
+        // Brown noise generation via AudioWorklet/ScriptProcessor
+        const bufferSize = 4096;
+        let lastOut = 0;
+        const node = ctx.createScriptProcessor(bufferSize, 1, 1);
+        node.onaudioprocess = function (e) {
+            const output = e.outputBuffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                const white = Math.random() * 2 - 1;
+                output[i] = (lastOut + (0.02 * white)) / 1.02; // Simple lowpass filter integration
+                lastOut = output[i];
+                output[i] *= 3.5; // Compensate gain
+            }
+        };
+        const gain = ctx.createGain();
+        gain.gain.value = document.getElementById('brownVolume').value / 100;
+        node.connect(gain);
+        return { node, gain };
+    }
+
+    function createGammaIsocronic() {
+        // Creates a carrier frequency (e.g. 200Hz) modulated by a 40Hz envelope (Gamma)
+        const carrier = ctx.createOscillator();
+        carrier.type = 'sine';
+        carrier.frequency.value = 200;
+
+        const modulator = ctx.createOscillator();
+        modulator.type = 'square';
+        modulator.frequency.value = 40; // 40 Hz Gamma
+
+        const modulatorGain = ctx.createGain();
+        modulatorGain.gain.value = 1;
+
+        const masterGain = ctx.createGain();
+        masterGain.gain.value = document.getElementById('gammaVolume').value / 100;
+
+        // Modulate the master gain
+        modulator.connect(modulatorGain);
+        modulatorGain.connect(masterGain.gain);
+
+        carrier.connect(masterGain);
+        return { carrier, modulator, gain: masterGain };
+    }
+
+    const btnBrown = document.getElementById('toggleBrownNoise');
+    const brownVol = document.getElementById('brownVolume');
+
+    if (btnBrown) {
+        btnBrown.addEventListener('click', () => {
+            initAudioCtx();
+            if (ctx.state === 'suspended') ctx.resume();
+
+            if (isBrownPlaying) {
+                brownNoiseNode.node.disconnect();
+                isBrownPlaying = false;
+                btnBrown.textContent = '▶ Ruído Marrom';
+                btnBrown.style.background = '';
+            } else {
+                brownNoiseNode = createBrownNoise();
+                brownNoiseNode.gain.connect(ctx.destination);
+                isBrownPlaying = true;
+                btnBrown.textContent = '⏸ Parar Ruído';
+                btnBrown.style.background = 'rgba(139, 69, 19, 0.4)';
+            }
+        });
+
+        brownVol.addEventListener('input', (e) => {
+            if (brownNoiseNode) brownNoiseNode.gain.gain.value = e.target.value / 100;
+        });
+    }
+
+    const btnGamma = document.getElementById('toggleGammaWave');
+    const gammaVol = document.getElementById('gammaVolume');
+
+    if (btnGamma) {
+        btnGamma.addEventListener('click', () => {
+            initAudioCtx();
+            if (ctx.state === 'suspended') ctx.resume();
+
+            if (isGammaPlaying) {
+                gammaOsc.carrier.stop();
+                gammaOsc.modulator.stop();
+                gammaOsc.carrier.disconnect();
+                gammaOsc.modulator.disconnect();
+                isGammaPlaying = false;
+                btnGamma.textContent = '▶ Ondas Gamma (40Hz)';
+                btnGamma.style.background = '';
+            } else {
+                gammaOsc = createGammaIsocronic();
+                gammaOsc.gain.connect(ctx.destination);
+                gammaOsc.carrier.start();
+                gammaOsc.modulator.start();
+                isGammaPlaying = true;
+                btnGamma.textContent = '⏸ Parar Gamma';
+                btnGamma.style.background = 'rgba(139, 92, 246, 0.4)';
+            }
+        });
+
+        gammaVol.addEventListener('input', (e) => {
+            if (gammaOsc) gammaOsc.gain.gain.value = e.target.value / 100;
+        });
+    }
+}
+
+// ===== SQL TERMINAL ======
+function initSqlSimulator() {
+    const runBtn = document.getElementById('btnRunSql');
+    const resetBtn = document.getElementById('btnResetSqlDbs');
+    const inputArea = document.getElementById('sqlTerminalInput');
+    const outDiv = document.getElementById('sqlTerminalOutput');
+    let db;
+
+    if (!document.getElementById('section-sql-practice')) return;
+
+    function renderTableFromResults(results) {
+        if (!results || results.length === 0) {
+            return `<div style="color:var(--accent-green); text-align:center; padding: 20px;">✓ Query executada com sucesso. (0 linhas afetadas / vazia)</div>`;
+        }
+
+        let html = '<table class="sql-table"><thead><tr>';
+        results[0].columns.forEach(col => {
+            html += `<th>${col}</th>`;
+        });
+        html += '</tr></thead><tbody>';
+
+        results[0].values.forEach(row => {
+            html += '<tr>';
+            row.forEach(val => {
+                html += `<td>${val !== null ? val : '<em>NULL</em>'}</td>`;
+            });
+            html += '</tr>';
+        });
+
+        html += '</tbody></table>';
+        return html;
+    }
+
+    const savedQuery = localStorage.getItem('datapath_last_sql');
+    if (savedQuery) {
+        inputArea.value = savedQuery;
+    }
+
+    inputArea.addEventListener('input', () => {
+        localStorage.setItem('datapath_last_sql', inputArea.value);
+    });
+
+    function initializeDb() {
+        if (typeof window.initSqlJs !== 'function') return;
+
+        initSqlJs({ locateFile: filename => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${filename}` }).then(function (SQL) {
+            db = new SQL.Database();
+
+            // Create some mock tables
+            const initQuery = `
+                CREATE TABLE clientes (id_cliente INT, nome TEXT, estado TEXT);
+                INSERT INTO clientes VALUES (1, 'Walter', 'SP'), (2, 'Sofia', 'RJ'), (3, 'Ana', 'MG'), (4, 'Carlos', 'SP');
+
+                CREATE TABLE produtos (id_produto INT, produto TEXT, categoria TEXT, preco REAL);
+                INSERT INTO produtos VALUES (101, 'Notebook', 'Tecnologia', 3500.00), 
+                                            (102, 'Mouse', 'Periféricos', 150.00),
+                                            (103, 'Cadeira', 'Móveis', 800.00);
+
+                CREATE TABLE vendas (id_venda INT, id_cliente INT, id_produto INT, quantidade INT, data_venda TEXT);
+                INSERT INTO vendas VALUES (1001, 1, 101, 1, '2026-03-01'), 
+                                          (1002, 1, 102, 2, '2026-03-01'),
+                                          (1003, 2, 103, 1, '2026-03-05'),
+                                          (1004, 3, 101, 1, '2026-03-10'),
+                                          (1005, 4, 102, 3, '2026-03-15');
+            `;
+            db.run(initQuery);
+            outDiv.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding: 20px;">Banco inicializado e pronto! Clique em "Executar Query".</div>`;
+        }).catch(err => {
+            console.error(err);
+            outDiv.innerHTML = `<div style="color:var(--accent-red); padding: 20px;">Erro ao carregar SQLite no navegador.</div>`;
+        });
+    }
+
+    // Try to init DB
+    initializeDb();
+
+    if (runBtn) {
+        runBtn.addEventListener('click', () => {
+            if (!db) {
+                outDiv.innerHTML = `<div style="color:var(--accent-red); padding: 20px;">Aguarde, banco carregando...</div>`;
+                return;
+            }
+            const query = inputArea.value;
+            try {
+                const res = db.exec(query);
+                outDiv.innerHTML = renderTableFromResults(res);
+            } catch (err) {
+                outDiv.innerHTML = `<div style="color:var(--accent-red); padding: 20px;"><b>Erro de Sintaxe:</b><br/>${err.message}</div>`;
+            }
+        });
+    }
+
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            db.close();
+            initializeDb();
+        });
+    }
+}
+
+// ===== FLASHCARDS ======
+const FLASHCARDS_DATA = [
+    { cat: 'excel', q: 'Para que serve a função ÍNDICE (INDEX)?', a: 'Retorna um valor dentro de um intervalo dada a interseção exata de linha e coluna. Geralmente usada em conjunto com CORRESP para substituir o PROCV.' },
+    { cat: 'excel', q: 'Como criar uma Tabela Dinâmica rapidamente?', a: 'Selecione seus dados (como tabela) e aperte Alt + N + V. No Excel moderno, vá para Inserir > Tabela Dinâmica.' },
+    { cat: 'excel', q: 'Qual atalho transforma dados em uma Tabela de verdade?', a: 'Ctrl + T (ou Ctrl + Alt + T dependendo da versão). É fundamental para garantir que referências aumentem dinamicamente e formatação.' },
+    { cat: 'excel', q: 'O que o XLOOKUP (PROCX) faz melhor que o PROCV?', a: 'Ele procura em qualquer direção (para a esquerda ou direita), por padrão traz correspondência exata e já possui tratamento de erro nativo via "if_not_found".' },
+
+    { cat: 'powerbi', q: 'O que é um Star Schema (Esquema Estrela)?', a: 'Modelo dimensional em que uma "Tabela Fato" (dados quantitativos, transações) fica no centro conectada a "Tabelas Dimensão" (entidades descritivas, datas).' },
+    { cat: 'powerbi', q: 'O que é DAX?', a: 'Data Analysis Expressions. É a linguagem de fórmula usada em Power BI para criar Medidas e Colunas Calculadas.' },
+    { cat: 'powerbi', q: 'Diferença entre CALCULATE e FILTER?', a: 'CALCULATE é a função mais poderosa que altera o Contexto de Filtro de uma expressão. FILTER itera linha a linha sobre uma tabela e retorna dados limitados pela condição.' },
+    { cat: 'powerbi', q: 'Para que criar uma Tabela Calendário?', a: 'Para poder usar as funções de "Time Intelligence" (Inteligência de Tempo) como TOTALYTD (acumulado do ano) ou SAMEPERIODLASTYEAR.' },
+
+    { cat: 'sql', q: 'Qual a principal diferença entre WHERE e HAVING?', a: 'WHERE filtra as linhas da tabela original antes do agrupamento (GROUP BY). HAVING filtra o resultado após as agregações do GROUP BY (ex: HAVING SUM(valor) > 100).' },
+    { cat: 'sql', q: 'Diferença entre LEFT JOIN e INNER JOIN?', a: 'INNER JOIN só traz o que tem match (correspondência) nas 2 tabelas. LEFT JOIN traz TODOS da tabela da esquerda, mesmo se não existir do lado direito (trazendo NULL lá).' },
+    { cat: 'sql', q: 'Qual a ordem correta estrutural de uma Query (ordem escrita)?', a: 'SELECT > FROM > JOINs > WHERE > GROUP BY > HAVING > ORDER BY > LIMIT' },
+    { cat: 'sql', q: 'Como extrair nomes únicos, que não se repetem, do banco?', a: 'Usando o comando DISTINCT logo após o SELECT. Ex: SELECT DISTINCT nome FROM clientes;' }
+];
+
+function initFlashcards() {
+    const grid = document.getElementById('flashcardsGrid');
+    const filters = document.querySelectorAll('.fc-filter');
+    if (!grid) return;
+
+    function renderCards(filterCat) {
+        grid.innerHTML = '';
+        const cards = filterCat === 'all'
+            ? FLASHCARDS_DATA
+            : FLASHCARDS_DATA.filter(c => c.cat === filterCat);
+
+        cards.forEach(card => {
+            const el = document.createElement('div');
+            el.className = 'flashcard';
+
+            let labelBadge = '';
+            if (card.cat === 'excel') labelBadge = '📗 EXCEL';
+            if (card.cat === 'powerbi') labelBadge = '📊 POWER BI';
+            if (card.cat === 'sql') labelBadge = '🗄️ SQL';
+
+            el.innerHTML = `
+                <div class="fc-inner">
+                    <div class="fc-front">
+                        <span class="fc-badge">${labelBadge}</span>
+                        <h3>${card.q}</h3>
+                    </div>
+                    <div class="fc-back">
+                        ${card.a}
+                    </div>
+                </div>
+            `;
+            el.addEventListener('click', () => {
+                el.classList.toggle('flipped');
+            });
+            grid.appendChild(el);
+        });
+    }
+
+    renderCards('all');
+
+    filters.forEach(f => {
+        f.addEventListener('click', () => {
+            filters.forEach(btn => btn.classList.remove('active'));
+            f.classList.add('active');
+            renderCards(f.dataset.filter);
+        });
+    });
 }

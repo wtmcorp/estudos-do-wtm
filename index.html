@@ -11,6 +11,18 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- Luckysheet Dependencies -->
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/css/pluginsCss.css' />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/plugins.css' />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/css/luckysheet.css' />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/assets/iconfont/iconfont.css' />
+    <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/js/plugin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/luckysheet.umd.js"></script>
+
+    <!-- SQL.js Dependency -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -64,9 +76,21 @@
                 <span class="nav-label">Semana 7–8: Projetos</span>
                 <span class="nav-badge" id="badge-week78">0/13</span>
             </li>
+            <li class="nav-item" data-section="flashcards">
+                <span class="nav-icon">🃏</span>
+                <span class="nav-label">Flashcards</span>
+            </li>
             <li class="nav-item" data-section="simulados">
                 <span class="nav-icon">🧠</span>
                 <span class="nav-label">Simulados</span>
+            </li>
+            <li class="nav-item" data-section="excel-practice">
+                <span class="nav-icon">💻</span>
+                <span class="nav-label">Prática: Excel</span>
+            </li>
+            <li class="nav-item" data-section="sql-practice">
+                <span class="nav-icon">🗄️</span>
+                <span class="nav-label">Prática: SQL</span>
             </li>
             <li class="nav-item" data-section="resources">
                 <span class="nav-icon">📚</span>
@@ -1045,6 +1069,83 @@
             </div>
         </section>
 
+        <!-- EXCEL WEB (LUCKYSHEET) -->
+        <section class="content-section" id="section-excel-practice" style="height: calc(100vh - 80px);">
+            <div class="section-header" style="margin-bottom: 24px;">
+                <div class="week-badge week-badge--green">PRÁTICA NO NAVEGADOR</div>
+                <h1>Excel Web Integrado</h1>
+                <p class="section-subtitle">Pratique as fórmulas e atalhos sem precisar sair do site! Teste gráficos e
+                    tabelas dinâmicas livremente.</p>
+            </div>
+            <!-- Hack para o luckysheet renderizar perfeitamente -->
+            <div
+                style="position: relative; width: 100%; height: calc(100% - 100px); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-glass); background: #fff;">
+                <div id="luckysheet-container"
+                    style="margin:0px;padding:0px;position:absolute;width:100%;height:100%;left: 0px;top: 0px;"></div>
+            </div>
+        </section>
+
+        <!-- SQL TERM WEB -->
+        <section class="content-section" id="section-sql-practice">
+            <div class="section-header" style="margin-bottom: 24px;">
+                <div class="week-badge week-badge--amber">PRÁTICA NO NAVEGADOR</div>
+                <h1>Terminal SQL Nativo</h1>
+                <p class="section-subtitle">Escreva queries SQL e veja o resultado abaixo. Já carregamos as tabelas:
+                    <b>clientes, produtos e vendas</b>.
+                </p>
+            </div>
+            <div class="sql-container">
+                <div class="sql-editor-wrapper">
+                    <textarea id="sqlTerminalInput" spellcheck="false">-- Dê play para ver todas as vendas combinadas com os nomes dos clientes
+SELECT v.id_venda, c.nome, p.produto, v.quantidade, (v.quantidade * p.preco) as total
+FROM vendas v
+INNER JOIN clientes c ON v.id_cliente = c.id_cliente
+INNER JOIN produtos p ON v.id_produto = p.id_produto;
+</textarea>
+                    <div class="sql-actions">
+                        <button id="btnRunSql" class="sql-btn sql-btn-primary">▶ Executar Query</button>
+                        <button id="btnResetSqlDbs" class="sql-btn sql-btn-outline">↻ Restaurar Banco</button>
+                    </div>
+                </div>
+                <!-- Hack para overflow da tabela -->
+                <div
+                    style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius:12px; padding:12px; overflow-x: auto; min-height: 200px;">
+                    <div class="sql-results" id="sqlTerminalOutput">
+                        <div style="color:var(--text-muted); text-align:center; padding: 20px;">Clique em "Executar
+                            Query" para ver os resultados.</div>
+                    </div>
+                </div>
+                <p class="sql-schema-hint"
+                    style="margin-top: 16px; font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+                    <b>Tabelas disponíveis no banco local:</b><br />
+                    <code>clientes (id_cliente, nome, estado)</code><br />
+                    <code>produtos (id_produto, produto, categoria, preco)</code><br />
+                    <code>vendas (id_venda, id_cliente, id_produto, quantidade, data_venda)</code>
+                </p>
+            </div>
+        </section>
+
+        <!-- FLASHCARDS -->
+        <section class="content-section" id="section-flashcards">
+            <div class="section-header">
+                <div class="week-badge week-badge--purple">REVISÃO ATIVA</div>
+                <h1>Flashcards de Memorização</h1>
+                <p class="section-subtitle">O teste ativo reforça a memória de longo prazo. Clique no cartão para ver a
+                    resposta!</p>
+            </div>
+
+            <div class="flashcards-filters">
+                <button class="fc-filter active" data-filter="all">Todos</button>
+                <button class="fc-filter" data-filter="excel">Excel</button>
+                <button class="fc-filter" data-filter="powerbi">Power BI</button>
+                <button class="fc-filter" data-filter="sql">SQL</button>
+            </div>
+
+            <div class="flashcards-grid" id="flashcardsGrid">
+                <!-- Javascript will inject cards here -->
+            </div>
+        </section>
+
         <!-- RESOURCES -->
         <section class="content-section" id="section-resources">
             <div class="section-header">
@@ -1173,57 +1274,84 @@
                 </div>
             </div>
         </section>
-
-        <!-- RESOURCES -->
-        <section class="content-section" id="section-resources">
-            <div class="section-header">
-                <h1>Recursos e Links Úteis</h1>
-                <p class="section-subtitle">Tudo que você precisa em um só lugar</p>
-            </div>
-
-            <div class="resources-grid">
-                <div class="resource-category">
-                    <h3>📗 Excel</h3>
-                    <ul class="resource-list">
-                        <li><a href="https://www.youtube.com/results?search_query=excel+avan%C3%A7ado+analise+de+dados"
-                                target="_blank">YouTube — Excel Avançado para Dados</a></li>
-                        <li><a href="https://www.kaggle.com/datasets" target="_blank">Kaggle — Datasets gratuitos</a>
-                        </li>
-                        <li><a href="https://support.microsoft.com/pt-br/excel" target="_blank">Documentação oficial
-                                Microsoft Excel</a></li>
-                    </ul>
-                </div>
-                <div class="resource-category">
-                    <h3>📊 Power BI</h3>
-                    <ul class="resource-list">
-                        <li><a href="https://learn.microsoft.com/pt-br/power-bi/" target="_blank">Microsoft Learn —
-                                Power BI</a></li>
-                        <li><a href="https://www.youtube.com/results?search_query=power+bi+completo"
-                                target="_blank">YouTube — Curso Power BI</a></li>
-                        <li><a href="https://dax.guide/" target="_blank">DAX Guide — Referência completa</a></li>
-                    </ul>
-                </div>
-                <div class="resource-category">
-                    <h3>🗄️ SQL</h3>
-                    <ul class="resource-list">
-                        <li><a href="https://sqliteonline.com/" target="_blank">SQLite Online — Pratique no
-                                navegador</a></li>
-                        <li><a href="https://www.w3schools.com/sql/" target="_blank">W3Schools — Tutorial SQL</a></li>
-                        <li><a href="https://www.hackerrank.com/domains/sql" target="_blank">HackerRank — Exercícios
-                                SQL</a></li>
-                    </ul>
-                </div>
-                <div class="resource-category">
-                    <h3>🚀 Portfolio e Carreira</h3>
-                    <ul class="resource-list">
-                        <li><a href="https://github.com/" target="_blank">GitHub — Publique seus projetos</a></li>
-                        <li><a href="https://www.novypro.com/" target="_blank">NovyPro — Portfolio Power BI</a></li>
-                        <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn — Otimize seu perfil</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
     </main>
+
+    <!-- FLOATING PRODUCTIVITY TOOLS -->
+    <div class="floating-tools" id="floatingTools">
+        <button class="tool-btn" id="btnPomodoro" title="Foco (Pomodoro)">⏱️</button>
+        <button class="tool-btn tool-btn-pulse" id="btnNeuralAudio" title="Foco Neural Profundo (Audio)">🎧</button>
+        <button class="tool-btn" id="btnNotes" title="Minhas Anotações">📝</button>
+    </div>
+
+    <!-- NEURAL AUDIO WIDGET -->
+    <div class="tool-widget" id="widgetNeuralAudio">
+        <div class="widget-header">
+            <h3>🎧 Foco Neural Profundo</h3>
+            <button class="close-widget" data-widget="widgetNeuralAudio">✕</button>
+        </div>
+        <div class="widget-body">
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                Frequências endossadas pela neurociência. O <b>Ruído Marrom</b> amortece distrações muito melhor que o
+                ruído branco, reduzindo o cansaço auditivo. Use em volume médio-baixo para concentração extrema sem
+                exaustão.
+            </p>
+            <div class="neural-control-group">
+                <button class="pomo-btn neural-btn" id="toggleBrownNoise">▶ Ruído Marrom</button>
+                <div class="neural-volume-slider">
+                    <span>🔉</span>
+                    <input type="range" id="brownVolume" min="0" max="100" value="30">
+                </div>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin: 16px 0;">
+                <b>Batidas Isochrônicas (40Hz Gamma):</b> Induz o cérebro a estados de alerta mental e alta retenção da
+                memória, otimizando o aprendizado analítico.
+            </p>
+            <div class="neural-control-group">
+                <button class="pomo-btn neural-btn-purple" id="toggleGammaWave">▶ Ondas Gamma (40Hz)</button>
+                <div class="neural-volume-slider">
+                    <span>🔉</span>
+                    <input type="range" id="gammaVolume" min="0" max="100" value="50">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POMODORO WIDGET -->
+    <div class="tool-widget" id="widgetPomodoro">
+        <div class="widget-header">
+            <h3>⏱️ Pomodoro Foco</h3>
+            <button class="close-widget" data-widget="widgetPomodoro">✕</button>
+        </div>
+        <div class="widget-body">
+            <div class="pomodoro-display" id="pomodoroTime">25:00</div>
+            <div class="pomodoro-controls">
+                <button class="pomo-btn" id="pomoStart">▶ Pomo</button>
+                <button class="pomo-btn pomo-btn-yellow" id="pomoBreak">⏸ Pausa</button>
+                <button class="pomo-btn pomo-btn-outline" id="pomoReset">↻</button>
+            </div>
+            <div style="margin-top: 16px; font-size: 12px; color: var(--text-muted); text-align: center;">
+                Foque 25m, descanse 5m.
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTES WIDGET -->
+    <div class="tool-widget" id="widgetNotes">
+        <div class="widget-header">
+            <h3>📝 Notas Rápidas</h3>
+            <button class="close-widget" data-widget="widgetNotes">✕</button>
+        </div>
+        <div class="widget-body">
+            <textarea id="quickNotes"
+                placeholder="Cole aqui atalhos, fórmulas ou ideias bacanas que você não quer esquecer...&#10;&#10;(Salva automático para quando você voltar!)"></textarea>
+            <div style="display:flex; justify-content: space-between; margin-top: 8px;">
+                <span style="font-size: 11px; color: var(--accent-green); display:none;" id="notesSavedLabel">✓
+                    Salvo</span>
+                <button id="clearNotesBtn"
+                    style="background: none; border: none; font-size: 11px; color: var(--accent-red); cursor: pointer;">Limpar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
