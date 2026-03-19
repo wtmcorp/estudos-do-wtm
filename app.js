@@ -281,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
 
     initQuiz();
+    fixVideoEmbeds();
 });
 
 // ===== QUIZ / SIMULADOS =====
@@ -957,5 +958,65 @@ function initFlashcards() {
             f.classList.add('active');
             renderCards(f.dataset.filter);
         });
+    });
+}
+
+// ===== FIX VIDEO EMBEDS =====
+function fixVideoEmbeds() {
+    document.querySelectorAll('.video-item').forEach(item => {
+        const iframe = item.querySelector('iframe');
+        const wrapper = item.querySelector('.video-wrapper');
+        if (iframe && wrapper) {
+            const src = iframe.getAttribute('src');
+            if (src && src.includes('youtube.com/embed/')) {
+                const videoId = src.split('/').pop().split('?')[0];
+                const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+                // Remove iframe
+                iframe.remove();
+
+                // Create thumbnail
+                const img = document.createElement('img');
+                img.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                img.style.position = 'absolute';
+                img.style.top = '0';
+                img.style.left = '0';
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+
+                // Create play button overlay
+                const playBtn = document.createElement('div');
+                playBtn.innerHTML = '▶';
+                playBtn.style.position = 'absolute';
+                playBtn.style.top = '50%';
+                playBtn.style.left = '50%';
+                playBtn.style.transform = 'translate(-50%, -50%)';
+                playBtn.style.backgroundColor = 'rgba(239, 68, 68, 0.9)';
+                playBtn.style.color = 'white';
+                playBtn.style.width = '60px';
+                playBtn.style.height = '40px';
+                playBtn.style.borderRadius = '10px';
+                playBtn.style.display = 'flex';
+                playBtn.style.alignItems = 'center';
+                playBtn.style.justifyContent = 'center';
+                playBtn.style.fontSize = '20px';
+                playBtn.style.boxShadow = '0 4px 14px rgba(0,0,0,0.4)';
+                playBtn.style.transition = 'background-color 0.2s';
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(playBtn);
+
+                // Make item clickable
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', () => {
+                    window.open(watchUrl, '_blank');
+                });
+
+                // Hover effect
+                item.addEventListener('mouseenter', () => playBtn.style.backgroundColor = '#f87171');
+                item.addEventListener('mouseleave', () => playBtn.style.backgroundColor = 'rgba(239, 68, 68, 0.9)');
+            }
+        }
     });
 }
