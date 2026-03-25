@@ -58,13 +58,79 @@ function initNavigation() {
             targetSection.classList.add('active');
         }
 
-        // Inicializa o Luckysheet se a aba of selecionada pela primeira vez
         if (target === 'excel-practice' && !luckysheetInitialized) {
             if (typeof luckysheet !== 'undefined') {
                 setTimeout(() => {
+                    // Custom PT-BR Translation Injection for Luckysheet (Overwriting 'es' to bypass strict validation)
+                    if (window.luckysheet.locales && !window.luckysheet.locales.pt_customized) {
+                        window.luckysheet.locales.pt_customized = true;
+                        window.luckysheet.locales.es = JSON.parse(JSON.stringify(window.luckysheet.locales.en));
+                        const pt = window.luckysheet.locales.es;
+
+                        // Toolbar translations
+                        pt.toolbar.undo = "Desfazer";
+                        pt.toolbar.redo = "Refazer";
+                        pt.toolbar.formatTitle = "Formato de Número";
+                        pt.toolbar.font = "Fonte";
+                        pt.toolbar.fontSize = "Tamanho";
+                        pt.toolbar.bold = "Negrito";
+                        pt.toolbar.italic = "Itálico";
+                        pt.toolbar.strikethrough = "Tachado";
+                        pt.toolbar.underline = "Sublinhado";
+                        pt.toolbar.textColor = "Cor da Fonte";
+                        pt.toolbar.fillColor = "Cor de Fundo";
+                        pt.toolbar.border = "Bordas";
+                        pt.toolbar.mergeCell = "Mesclar e Centralizar";
+                        pt.toolbar.horizontalAlign = "Alinhamento H.";
+                        pt.toolbar.verticalAlign = "Alinhamento V.";
+                        pt.toolbar.textWrap = "Quebrar Texto Automaticamente";
+                        pt.toolbar.textRotate = "Orientação/Rotação";
+                        pt.toolbar.image = "Adicionar Imagem";
+                        pt.toolbar.link = "Inserir Link";
+                        pt.toolbar.chart = "Gráfico";
+                        pt.toolbar.postil = "Comentário";
+                        pt.toolbar.pivotTable = "Tabela Dinâmica";
+                        pt.toolbar.functionTitle = "Fórmulas";
+                        pt.toolbar.sortAndFilter = "Classificar e Filtrar";
+                        pt.toolbar.findAndReplace = "Localizar, Substituir";
+                        pt.toolbar.clear = "Limpar Tudo";
+                        pt.toolbar.dataValidation = "Validação de Dados";
+                        pt.toolbar.conditionalFormat = "Formatação Condicional";
+                        pt.toolbar.freezeTopRow = "Congelar Linha Superior";
+                        pt.toolbar.freezeFirstColumn = "Congelar Coluna 1";
+
+                        // Right-click Context Menu
+                        pt.rightclick.copy = "Copiar";
+                        pt.rightclick.paste = "Colar";
+                        pt.rightclick.insertRow = "Inserir Linha";
+                        pt.rightclick.insertColumn = "Inserir Coluna";
+                        pt.rightclick.deleteRow = "Excluir Linha";
+                        pt.rightclick.deleteColumn = "Excluir Coluna";
+                        pt.rightclick.clear = "Limpar Conteúdo";
+                        pt.rightclick.hideRow = "Ocultar Linha";
+                        pt.rightclick.hideColumn = "Ocultar Coluna";
+                        pt.rightclick.showRow = "Mostrar Linha";
+                        pt.rightclick.showColumn = "Mostrar Coluna";
+
+                        // Sheet Configuration / Bottom Tabs
+                        pt.sheetconfig.add = "Nova Planilha";
+                        pt.sheetconfig.delete = "Excluir";
+                        pt.sheetconfig.copy = "Duplicar";
+                        pt.sheetconfig.rename = "Renomear";
+                        pt.sheetconfig.hide = "Ocultar Planilha";
+                        pt.sheetconfig.unhide = "Mostrar Ocultas";
+                        pt.sheetconfig.move = "Mover para";
+                        pt.sheetconfig.color = "Cor da Guia";
+
+                        // Information displays
+                        pt.info.defaultFmt = "Geral";
+                        pt.info.detailUpdate = "Última atualização";
+                        pt.info.return = "Sair";
+                    }
+
                     luckysheet.create({
                         container: 'luckysheet-container',
-                        lang: 'en',
+                        lang: 'es',
                         showinfobar: false,
                         data: [{
                             "name": "Planilha Prática",
