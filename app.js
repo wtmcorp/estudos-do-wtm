@@ -64,7 +64,7 @@ function initNavigation() {
                 setTimeout(() => {
                     luckysheet.create({
                         container: 'luckysheet-container',
-                        lang: 'pt',
+                        lang: 'en',
                         showinfobar: false,
                         data: [{
                             "name": "Planilha Prática",
