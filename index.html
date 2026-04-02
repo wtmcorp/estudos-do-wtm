@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Estudos 2 Meses — Analista de Dados</title>
-    <meta name="description"
-        content="Plano completo de estudos para transição de carreira para Analista de Dados em 2 meses">
+    <title>Plataforma Premium — Analista de Dados</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
-
-    <!-- Luckysheet Dependencies -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Dependencies: Luckysheet -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/css/pluginsCss.css' />
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/plugins.css' />
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/css/luckysheet.css' />
@@ -20,1340 +18,509 @@
     <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/js/plugin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/luckysheet.umd.js"></script>
 
-    <!-- SQL.js Dependency -->
+    <!-- Dependencies: SQL.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon">📊</div>
-                <div class="logo-text">
-                    <span class="logo-title">Data Path</span>
-                    <span class="logo-subtitle">Plano 2 Meses</span>
-                </div>
+    <!-- Sidebar / Navigation -->
+    <nav class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">✨</div>
+            <div class="brand-text">
+                <h1>Data Path</h1>
+                <span>Pro Edition</span>
             </div>
-            <button class="sidebar-toggle" id="sidebarToggle">☰</button>
         </div>
 
-        <div class="sidebar-progress">
-            <div class="progress-ring-container">
-                <svg class="progress-ring" viewBox="0 0 120 120">
-                    <circle class="progress-ring-bg" cx="60" cy="60" r="52" />
-                    <circle class="progress-ring-fill" id="progressRing" cx="60" cy="60" r="52" />
-                </svg>
-                <div class="progress-text" id="progressText">0%</div>
+        <div class="nav-scroll">
+            <div class="nav-section">
+                <h3>Visão Geral</h3>
+                <ul class="nav-list">
+                    <li class="nav-item active" data-target="dashboard">
+                        <i>🏠</i> Dashboard
+                    </li>
+                </ul>
             </div>
-            <p class="progress-label">Progresso Geral</p>
-        </div>
 
-        <ul class="nav-menu">
-            <li class="nav-item active" data-section="dashboard">
-                <span class="nav-icon">🏠</span>
-                <span class="nav-label">Dashboard</span>
-            </li>
-            <li class="nav-item" data-section="week12">
-                <span class="nav-icon">📗</span>
-                <span class="nav-label">Semana 1–2: Excel</span>
-                <span class="nav-badge" id="badge-week12">0/8</span>
-            </li>
-            <li class="nav-item" data-section="week34">
-                <span class="nav-icon">📊</span>
-                <span class="nav-label">Semana 3–4: Power BI</span>
-                <span class="nav-badge" id="badge-week34">0/8</span>
-            </li>
-            <li class="nav-item" data-section="week56">
-                <span class="nav-icon">🗄️</span>
-                <span class="nav-label">Semana 5–6: SQL</span>
-                <span class="nav-badge" id="badge-week56">0/8</span>
-            </li>
-            <li class="nav-item" data-section="week78">
-                <span class="nav-icon">🚀</span>
-                <span class="nav-label">Semana 7–8: Projetos</span>
-                <span class="nav-badge" id="badge-week78">0/13</span>
-            </li>
-            <li class="nav-item" data-section="flashcards">
-                <span class="nav-icon">🃏</span>
-                <span class="nav-label">Flashcards</span>
-            </li>
-            <li class="nav-item" data-section="simulados">
-                <span class="nav-icon">🧠</span>
-                <span class="nav-label">Simulados</span>
-            </li>
-            <li class="nav-item" data-section="excel-practice">
-                <span class="nav-icon">💻</span>
-                <span class="nav-label">Prática: Excel</span>
-            </li>
-            <li class="nav-item" data-section="sql-practice">
-                <span class="nav-icon">🗄️</span>
-                <span class="nav-label">Prática: SQL</span>
-            </li>
-            <li class="nav-item" data-section="resources">
-                <span class="nav-icon">📚</span>
-                <span class="nav-label">Recursos</span>
-            </li>
-        </ul>
+            <div class="nav-section">
+                <h3>Trilhas de Estudo</h3>
+                <ul class="nav-list">
+                    <li class="nav-item" data-target="module-excel">
+                        <i>📗</i> Módulo 1: Excel PRO
+                        <span class="nav-badge" id="badge-excel">0/5</span>
+                    </li>
+                    <li class="nav-item" data-target="module-powerbi">
+                        <i>📊</i> Módulo 2: Power BI
+                        <span class="nav-badge" id="badge-powerbi">0/4</span>
+                    </li>
+                    <li class="nav-item" data-target="module-sql">
+                        <i>🗄️</i> Módulo 3: Master SQL
+                        <span class="nav-badge" id="badge-sql">0/6</span>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="sidebar-footer">
-            <div class="streak-counter">
-                <span class="streak-icon">🔥</span>
-                <span class="streak-text" id="streakCount">0 dias seguidos</span>
+            <div class="nav-section">
+                <h3>Carreira & Prática</h3>
+                <ul class="nav-list">
+                    <li class="nav-item" data-target="portfolio" style="color: #a78bfa;">
+                        <i>🚀</i> Projetos Portfólio
+                    </li>
+                    <li class="nav-item" data-target="sim-sql">
+                        <i>💻</i> Console SQL
+                    </li>
+                    <li class="nav-item" data-target="sim-excel">
+                        <i>📑</i> Excel Emulador
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content" id="mainContent">
-
+    <!-- Main Workspace -->
+    <main class="main-content">
+        
         <!-- DASHBOARD -->
-        <section class="content-section active" id="section-dashboard">
-            <div class="section-header">
-                <h1>Bem-vindo ao seu Plano de Estudos</h1>
-                <p class="section-subtitle">2 meses para se tornar um Analista de Dados competitivo</p>
+        <section class="content-section active" id="dashboard">
+            <div class="header-banner">
+                <div class="header-title">
+                    <h2>Seu Centro de Comando</h2>
+                    <p>Domine a Análise de Dados e construa um portfólio impossível de ignorar.</p>
+                </div>
             </div>
 
             <div class="stats-grid">
-                <div class="stat-card stat-card--blue">
-                    <div class="stat-icon">📅</div>
+                <div class="stat-card">
+                    <div class="stat-icon blue">⚡</div>
                     <div class="stat-info">
-                        <span class="stat-value" id="daysRemaining">60</span>
-                        <span class="stat-label">Dias Restantes</span>
+                        <h4 id="stat-progress">0%</h4>
+                        <span>Progresso Geral</span>
                     </div>
                 </div>
-                <div class="stat-card stat-card--green">
-                    <div class="stat-icon">✅</div>
+                <div class="stat-card">
+                    <div class="stat-icon purple">🔥</div>
                     <div class="stat-info">
-                        <span class="stat-value" id="completedTasks">0</span>
-                        <span class="stat-label">Tarefas Completas</span>
+                        <h4 id="stat-streak">0</h4>
+                        <span>Dias Seguidos</span>
                     </div>
                 </div>
-                <div class="stat-card stat-card--purple">
-                    <div class="stat-icon">📝</div>
+                <div class="stat-card">
+                    <div class="stat-icon green">🏆</div>
                     <div class="stat-info">
-                        <span class="stat-value" id="totalTasks">37</span>
-                        <span class="stat-label">Total de Tarefas</span>
+                        <h4 id="stat-projects">0/3</h4>
+                        <span>Projetos Prontos</span>
                     </div>
                 </div>
-                <div class="stat-card stat-card--orange">
-                    <div class="stat-icon">🎯</div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">🎯</div>
                     <div class="stat-info">
-                        <span class="stat-value" id="currentWeek">1</span>
-                        <span class="stat-label">Semana Atual</span>
+                        <h4>Foco</h4>
+                        <span>Modo Produtividade</span>
                     </div>
                 </div>
             </div>
 
-            <div class="timeline-overview">
-                <h2>Linha do Tempo</h2>
-                <div class="timeline">
-                    <div class="timeline-item" data-week="12">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Semana 1–2</h3>
-                            <p>Excel Avançado</p>
-                            <div class="timeline-bar">
-                                <div class="timeline-fill" id="fill-week12"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-week="34">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Semana 3–4</h3>
-                            <p>Power BI</p>
-                            <div class="timeline-bar">
-                                <div class="timeline-fill" id="fill-week34"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-week="56">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Semana 5–6</h3>
-                            <p>SQL Básico</p>
-                            <div class="timeline-bar">
-                                <div class="timeline-fill" id="fill-week56"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-week="78">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Semana 7–8</h3>
-                            <p>3 Projetos Fortes</p>
-                            <div class="timeline-bar">
-                                <div class="timeline-fill" id="fill-week78"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="daily-tip">
-                <div class="tip-icon">💡</div>
-                <div class="tip-content">
-                    <h3>Dica do Dia</h3>
-                    <p id="dailyTip">Consistência vence intensidade. Estude todos os dias, mesmo que 30 minutos.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- WEEK 1-2: EXCEL -->
-        <section class="content-section" id="section-week12">
-            <div class="section-header">
-                <div class="week-badge week-badge--green">SEMANA 1–2</div>
-                <h1>Excel Avançado Focado em Dados</h1>
-                <p class="section-subtitle">Domine as ferramentas essenciais que todo analista de dados precisa</p>
-            </div>
-
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">01</span>
-                        <h3>Tabela Dinâmica</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w12-1"> Criar tabela dinâmica a
-                            partir de dataset bruto</label>
-                        <label class="check-item"><input type="checkbox" data-task="w12-2"> Agrupar dados por categoria,
-                            data e região</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>Como transformar dados brutos em tabelas dinâmicas</li>
-                            <li>Filtros, segmentação de dados e campos calculados</li>
-                            <li>Agrupamento por datas (mês, trimestre, ano)</li>
-                            <li>Atualização automática de tabelas dinâmicas</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>� Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/45JpMj8kQDU"
-                                            title="Tabela Dinâmica Excel Completo"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Ninja do Excel — Tabela Dinâmica Completa</div>
-                                </div>
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/ivlA5b2sC9g"
-                                            title="Técnicas Avançadas Tabela Dinâmica"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Hashtag Treinamentos — Tabela Dinâmica do Zero ao
-                                        Avançado</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Acesse <strong>kaggle.com/datasets</strong> e baixe o dataset "Superstore Sales" (ou
-                                    "Sample Superstore")</li>
-                                <li>Abra no Excel. Selecione todos os dados (Ctrl+T) e transforme em Tabela formatada
-                                </li>
-                                <li>Vá em <strong>Inserir → Tabela Dinâmica</strong>. Coloque em uma nova planilha</li>
-                                <li>Arraste "Data do Pedido" para LINHAS, "Categoria" para COLUNAS e "Vendas" para
-                                    VALORES</li>
-                                <li>Clique com botão direito na data → <strong>Agrupar</strong> → Selecione "Meses" e
-                                    "Anos"</li>
-                                <li>Adicione <strong>Segmentação de Dados</strong>: vá em Analisar → Inserir Segmentação
-                                    → escolha "Região" e "Subcategoria"</li>
-                                <li>Crie um <strong>campo calculado</strong>: Analisar → Campos, Itens e Conjuntos →
-                                    Campo Calculado → Margem = Lucro/Vendas</li>
-                                <li>Formate os valores como moeda (R$) e percentual (%)</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> Após terminar, clique com botão direito
-                                na tabela → Opções → marque "Atualizar ao abrir o arquivo" para atualização automática.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">02</span>
-                        <h3>PROCV / XLOOKUP</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w12-3"> Dominar PROCV com
-                            correspondência exata e aproximada</label>
-                        <label class="check-item"><input type="checkbox" data-task="w12-4"> Dominar XLOOKUP e entender
-                            vantagens sobre PROCV</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>PROCV: sintaxe, erros comuns, limitações</li>
-                            <li>XLOOKUP: busca bidirecional, valores padrão</li>
-                            <li>Quando usar cada uma</li>
-                            <li>Combinação com CORRESP e ÍNDICE</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>� Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/ubLPxe3Xfbg"
-                                            title="PROCV Excel Completo"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Hashtag Treinamentos — PROCV Completo (do básico ao
-                                        avançado)</div>
-                                </div>
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/Ld69Im4QhKQ"
-                                            title="XLOOKUP PROCX Excel"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 PROCX (XLOOKUP) — A função que substitui o PROCV</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Crie uma planilha "Pedidos" com colunas: ID_Pedido, ID_Cliente, Produto, Valor, Data
-                                </li>
-                                <li>Crie outra planilha "Clientes" com: ID_Cliente, Nome, Cidade, Estado</li>
-                                <li>Preencha Pedidos com 20 registros e Clientes com 10 registros</li>
-                                <li>Na planilha Pedidos, use <strong>=PROCV(B2;Clientes!A:B;2;0)</strong> para trazer o
-                                    nome do cliente</li>
-                                <li>Teste o que acontece quando o ID não existe (vai retornar #N/D)</li>
-                                <li>Agora use <strong>=XLOOKUP(B2;Clientes!A:A;Clientes!B:B;"Não encontrado")</strong>
-                                </li>
-                                <li>Compare: o XLOOKUP já trata o erro automaticamente com o 4º argumento</li>
-                                <li>Desafio: use XLOOKUP para buscar a Cidade do cliente pelo Nome (busca reversa —
-                                    impossível com PROCV!)</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> Em entrevistas, sempre mencione que sabe
-                                XLOOKUP. Mostra que você está atualizado. Mas saiba PROCV também, pois muitas empresas
-                                usam Excel antigo.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">03</span>
-                        <h3>Análise de Dataset</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w12-5"> Analisar um dataset completo
-                            do início ao fim</label>
-                        <label class="check-item"><input type="checkbox" data-task="w12-6"> Criar gráficos profissionais
-                            a partir dos dados</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>Como explorar dados: estatísticas descritivas</li>
-                            <li>Identificar padrões e outliers</li>
-                            <li>Gráficos: barras, linhas, dispersão, combinados</li>
-                            <li>Formatação condicional para destacar insights</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>� Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/45JpMj8kQDU"
-                                            title="Análise de Dados Excel"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Análise de Dados no Excel — Passo a Passo Completo</div>
-                                </div>
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/ivlA5b2sC9g"
-                                            title="Gráficos Profissionais Excel"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Como Criar Gráficos Profissionais no Excel</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Baixe o dataset "Superstore Sales" do Kaggle e abra no Excel</li>
-                                <li>Use <strong>MÉDIA, MEDIANA, MÍN, MÁX</strong> para entender a distribuição de vendas
-                                </li>
-                                <li>Aplique <strong>Formatação Condicional</strong> (Página Inicial → Formatação
-                                    Condicional → Escalas de Cor) na coluna de Lucro</li>
-                                <li>Crie um <strong>gráfico de barras</strong>: Top 10 produtos mais vendidos (selecione
-                                    dados → Inserir → Gráfico de Barras)</li>
-                                <li>Crie um <strong>gráfico de linhas</strong>: Tendência de vendas mensais ao longo do
-                                    ano</li>
-                                <li>Crie um <strong>gráfico combinado</strong>: Vendas (barras) vs Lucro (linha) por
-                                    categoria</li>
-                                <li>Formate profissionalmente: remova linhas de grade, adicione rótulos de dados,
-                                    escolha cores harmônicas</li>
-                                <li>Escreva 3 insights que você descobriu (ex: "Tecnologia tem maior receita mas
-                                    Suprimentos tem maior volume")</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> Recrutadores adoram ver que você sabe
-                                extrair insights dos dados, não apenas criar gráficos bonitos. Sempre documente suas
-                                conclusões.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">04</span>
-                        <h3>Limpeza de Dados</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w12-7"> Limpar dataset com dados
-                            sujos</label>
-                        <label class="check-item"><input type="checkbox" data-task="w12-8"> Padronizar formatos e tratar
-                            valores ausentes</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>Remover duplicatas e espaços extras (ARRUMAR/TRIM)</li>
-                            <li>Padronizar texto (MAIÚSCULA, MINÚSCULA, PRI.MAIÚSCULA)</li>
-                            <li>Tratar valores em branco e #N/D</li>
-                            <li>Texto para Colunas, Flash Fill</li>
-                            <li>Validação de dados</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>� Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/ubLPxe3Xfbg"
-                                            title="Limpeza de Dados Excel"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Limpeza e Tratamento de Dados no Excel</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Crie uma planilha "suja" com 30 registros contendo: nomes com espaços extras (" João
-                                    "), CPFs sem formatação, datas em formatos diferentes (01/03/2025, 2025-03-01, 1 de
-                                    março)</li>
-                                <li>Use <strong>=ARRUMAR(A2)</strong> para remover espaços extras dos nomes</li>
-                                <li>Use <strong>=PRI.MAIÚSCULA(A2)</strong> para padronizar capitalização</li>
-                                <li>Vá em <strong>Dados → Remover Duplicatas</strong> e elimine registros repetidos</li>
-                                <li>Para tratar #N/D, use <strong>=SEERRO(PROCV(...);"") </strong> para substituir erros
-                                    por vazio</li>
-                                <li>Use <strong>Texto para Colunas</strong> (Dados → Texto para Colunas) para separar
-                                    "Cidade-Estado" em duas colunas</li>
-                                <li>Aplique <strong>Validação de Dados</strong> (Dados → Validação) para criar lista
-                                    suspensa de estados válidos</li>
-                                <li>Ao final, compare o antes e depois: conte registros limpos vs originais</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> Na vida real, 80% do trabalho de um
-                                analista é limpeza de dados. Quem domina isso se destaca em qualquer vaga.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- WEEK 3-4: POWER BI -->
-        <section class="content-section" id="section-week34">
-            <div class="section-header">
-                <div class="week-badge week-badge--blue">SEMANA 3–4</div>
-                <h1>Power BI</h1>
-                <p class="section-subtitle">Transforme dados em dashboards interativos e impressionantes</p>
-            </div>
-
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">01</span>
-                        <h3>Fundamentos e Interface</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w34-1"> Instalar Power BI e conhecer
-                            a interface</label>
-                        <label class="check-item"><input type="checkbox" data-task="w34-2"> Importar dados de Excel, CSV
-                            e Web</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>Interface do Power BI Desktop (3 visões)</li>
-                            <li>Power Query: importar e transformar dados</li>
-                            <li>Tipos de dados e formatação</li>
-                            <li>Publicação no Power BI Service</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/UFGe25gydxo" title="Power BI do Zero"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Hashtag Treinamentos — Curso Básico Power BI (do Zero)
-                                    </div>
-                                </div>
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/QnCSgEsIHMA"
-                                            title="Power BI Completo"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Aprenda Power BI do Zero em Uma Aula</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Baixe e instale o <strong>Power BI Desktop</strong> (gratuito) em
-                                    powerbi.microsoft.com</li>
-                                <li>Abra o Power BI e explore as 3 visões: Relatório, Dados e Modelo</li>
-                                <li>Clique em <strong>Obter Dados → Excel</strong> e importe o dataset Superstore que
-                                    você usou no Excel</li>
-                                <li>No Power Query, renomeie colunas, altere tipos de dados e remova colunas
-                                    desnecessárias</li>
-                                <li>Clique em <strong>Fechar e Aplicar</strong> para carregar os dados</li>
-                                <li>Crie um visual simples: arraste "Vendas" para um Cartão e "Categoria" para um
-                                    gráfico de barras</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> O Power Query é o "coração" do Power BI.
-                                Domine ele e você resolve 50% dos problemas antes de começar o dashboard.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">02</span>
-                        <h3>Modelagem de Dados</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w34-3"> Criar relacionamentos entre
-                            tabelas</label>
-                        <label class="check-item"><input type="checkbox" data-task="w34-4"> Entender modelo estrela
-                            (Star Schema)</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>Tabelas fato vs tabelas dimensão</li>
-                            <li>Relacionamentos 1:N e N:N</li>
-                            <li>Tabela calendário (dCalendario)</li>
-                            <li>Boas práticas de modelagem</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aula recomendada:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/UFGe25gydxo"
-                                            title="Modelagem Star Schema Power BI"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Star Schema (Modelo Estrela) no Power BI — Explicação
-                                        Completa</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Crie 3 planilhas no Excel: <strong>fVendas</strong> (ID_Venda, ID_Produto, ID_Loja,
-                                    Data, Valor), <strong>dProduto</strong> (ID_Produto, Nome, Categoria),
-                                    <strong>dLoja</strong> (ID_Loja, Cidade, Estado)
-                                </li>
-                                <li>Importe todas no Power BI via Obter Dados → Excel</li>
-                                <li>Vá para a visão <strong>Modelo</strong> e crie relacionamentos: fVendas[ID_Produto]
-                                    → dProduto[ID_Produto]</li>
-                                <li>Crie uma <strong>tabela calendário</strong> em DAX: dCalendario =
-                                    CALENDAR(DATE(2024,1,1), DATE(2025,12,31))</li>
-                                <li>Relacione fVendas[Data] com dCalendario[Date]</li>
-                                <li>Verifique se há estrela: fVendas no centro conectada a 3 dimensões ao redor</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> Sempre nomeie tabelas fato com "f" e
-                                dimensão com "d" (ex: fVendas, dProduto). Isso mostra organização profissional.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">03</span>
-                        <h3>Dashboards</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w34-5"> Criar dashboard completo com
-                            KPIs</label>
-                        <label class="check-item"><input type="checkbox" data-task="w34-6"> Aplicar design profissional
-                            e interatividade</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>Visuais: cartões, gráficos, mapas, tabelas</li>
-                            <li>Filtros e segmentação de dados (Slicers)</li>
-                            <li>Drill-down e drill-through</li>
-                            <li>Design: cores, alinhamento, hierarquia visual</li>
-                            <li>Bookmarks e navegação entre páginas</li>
-                        </ul>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Com os dados já importados, crie uma <strong>página "Visão Geral"</strong> no Power
-                                    BI</li>
-                                <li>Adicione 4 <strong>Cartões KPI</strong>: Total Vendas, Total Lucro, Qtd Pedidos,
-                                    Ticket Médio</li>
-                                <li>Crie um <strong>gráfico de barras</strong> com Vendas por Categoria</li>
-                                <li>Crie um <strong>gráfico de linhas</strong> com Vendas por Mês (use a tabela
-                                    calendário)</li>
-                                <li>Adicione <strong>Slicers</strong> (segmentadores) de Ano, Região e Categoria</li>
-                                <li>Aplique um tema profissional: Exibir → Temas → escolha um tema escuro</li>
-                                <li>Alinhe todos os visuais usando <strong>Formatar → Alinhar</strong> e distribua
-                                    uniformemente</li>
-                                <li>Teste a <strong>interatividade</strong>: clique em uma barra e veja os outros
-                                    visuais filtrarem automaticamente</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> Um dashboard bonito com 5 visuais bem
-                                feitos impressiona mais que 15 visuais desorganizados. Menos é mais!</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">04</span>
-                        <h3>DAX e Métricas</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w34-7"> Criar medidas com DAX
-                            básico</label>
-                        <label class="check-item"><input type="checkbox" data-task="w34-8"> Calcular KPIs: YTD, variação
-                            %, ranking</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>Medidas vs Colunas Calculadas</li>
-                            <li>SUM, AVERAGE, COUNT, DISTINCTCOUNT</li>
-                            <li>CALCULATE, FILTER, ALL</li>
-                            <li>Inteligência temporal: TOTALYTD, SAMEPERIODLASTYEAR</li>
-                            <li>FORMAT e funções de texto</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aula recomendada:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/QnCSgEsIHMA" title="DAX Power BI"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 O que é DAX Power BI? (Sem Complicação)</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo — Crie estas medidas DAX:</h4>
-                            <div class="code-block">Total Vendas = SUM(fVendas[Valor])
-                                Ticket Médio = AVERAGE(fVendas[Valor])
-                                Qtd Pedidos = COUNTROWS(fVendas)
-                                Vendas YTD = TOTALYTD([Total Vendas]; dCalendario[Date])
-                                Vendas Ano Anterior = CALCULATE([Total Vendas]; SAMEPERIODLASTYEAR(dCalendario[Date]))
-                                Variação % = DIVIDE([Total Vendas] - [Vendas Ano Anterior]; [Vendas Ano Anterior])</div>
-                            <ol class="exercise-steps">
-                                <li>Vá em <strong>Modelagem → Nova Medida</strong> e crie cada uma das medidas acima
-                                </li>
-                                <li>Coloque "Total Vendas" em um Cartão e formate como moeda</li>
-                                <li>Crie um Cartão com "Variação %" e use formatação condicional (verde se positivo,
-                                    vermelho se negativo)</li>
-                                <li>Teste: filtre por ano e veja se as medidas YTD e Ano Anterior mudam corretamente
-                                </li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> Sempre use DIVIDE() em vez de barra (/)
-                                no DAX. Ele trata divisão por zero automaticamente.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- WEEK 5-6: SQL -->
-        <section class="content-section" id="section-week56">
-            <div class="section-header">
-                <div class="week-badge week-badge--amber">SEMANA 5–6</div>
-                <h1>SQL Básico</h1>
-                <p class="section-subtitle">Consulte bancos de dados com confiança — o essencial que você precisa</p>
-            </div>
-
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">01</span>
-                        <h3>SELECT e Filtros</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w56-1"> Escrever consultas SELECT
-                            básicas</label>
-                        <label class="check-item"><input type="checkbox" data-task="w56-2"> Usar WHERE, ORDER BY, LIMIT,
-                            DISTINCT</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>SELECT *, SELECT colunas específicas</li>
-                            <li>WHERE com operadores: =, !=, >, <, BETWEEN, IN, LIKE</li>
-                            <li>ORDER BY ASC/DESC</li>
-                            <li>LIMIT e OFFSET</li>
-                            <li>Alias com AS</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>� Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/ncgEQBONI_w"
-                                            title="SQL do Zero — Hashtag"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Hashtag Treinamentos — SQL do Zero em menos de 15 min
-                                    </div>
-                                </div>
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/LQbESdxDEpM"
-                                            title="Curso SQL Completo"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Curso Completo SQL para Iniciantes</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Acesse o <a href="https://sqliteonline.com/" target="_blank">SQLite Online</a></li>
-                                <li>Crie uma tabela:
-                                    <code>CREATE TABLE vendas (id INT, produto TEXT, valor REAL);</code>
-                                </li>
-                                <li>Insira 5 produtos com valores diferentes usando <code>INSERT INTO</code></li>
-                                <li>Faça um <code>SELECT *</code> para ver todos os dados</li>
-                                <li>Filtre produtos com valor acima de 50: <code>WHERE valor > 50</code></li>
-                                <li>Ordene do mais caro para o mais barato: <code>ORDER BY valor DESC</code></li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> O SQL é a linguagem universal dos dados.
-                                Se você souber SQL, consegue trabalhar com qualquer banco de dados do mercado.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">02</span>
-                        <h3>JOIN</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w56-3"> Dominar INNER JOIN</label>
-                        <label class="check-item"><input type="checkbox" data-task="w56-4"> Entender LEFT JOIN, RIGHT
-                            JOIN, FULL JOIN</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <ul>
-                            <li>INNER JOIN: combinar tabelas pela chave</li>
-                            <li>LEFT JOIN: manter todos da tabela esquerda</li>
-                            <li>RIGHT JOIN e FULL OUTER JOIN</li>
-                            <li>JOIN com múltiplas condições</li>
-                        </ul>
-                        <div class="video-section">
-                            <h4>� Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/F4GlUHsSaTs" title="JOIN no SQL"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Como funcionam os JOINs no SQL (Visual)</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>No SQLite Online, crie a tabela <code>clientes (id INT, nome TEXT)</code></li>
-                                <li>Insira clientes e relacione os IDs com a tabela de <code>vendas</code> que você
-                                    criou antes</li>
-                                <li>Use <code>INNER JOIN</code> para listar o nome do cliente ao lado do produto que ele
-                                    comprou</li>
-                                <li>Experimente o <code>LEFT JOIN</code> para ver se existem clientes que ainda não
-                                    compraram nada</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> Em 90% das vezes, você usará INNER JOIN
-                                ou LEFT JOIN. Foque em dominar esses dois primeiro.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">03</span>
-                        <h3>GROUP BY e Agregações</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w56-5"> Agrupar e sumarizar
-                            dados</label>
-                        <label class="check-item"><input type="checkbox" data-task="w56-6"> Usar HAVING para filtrar
-                            grupos</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/ASXWwsXiFHQ" title="Group By SQL"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Agrupamento de Dados e Funções de Agregação</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Use <code>SUM(valor)</code> para ver o total vendido</li>
-                                <li>Use <code>GROUP BY produto</code> para ver quanto foi vendido de cada item</li>
-                                <li>Use <code>COUNT(*)</code> para saber quantos pedidos foram feitos</li>
-                                <li>Use <code>HAVING SUM(valor) > 100</code> para mostrar apenas produtos que venderam
-                                    mais de 100 no total</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-card">
-                    <div class="module-header">
-                        <span class="module-number">04</span>
-                        <h3>Consultas Avançadas</h3>
-                    </div>
-                    <div class="checklist">
-                        <label class="check-item"><input type="checkbox" data-task="w56-7"> Criar subqueries
-                            simples</label>
-                        <label class="check-item"><input type="checkbox" data-task="w56-8"> Usar CASE WHEN e funções de
-                            data</label>
-                    </div>
-                    <div class="module-resources">
-                        <h4>📖 O que estudar:</h4>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aulas recomendadas:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/6M-jFECiHog" title="SQL Avançado"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Subqueries, CASE WHEN e Funções avançadas</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício Passo a Passo:</h4>
-                            <ol class="exercise-steps">
-                                <li>Crie uma categoria de preço usando
-                                    <code>CASE WHEN valor > 100 THEN 'Caro' ELSE 'Barato' END</code>
-                                </li>
-                                <li>Use <code>strftime('%m', data)</code> (se estiver no SQLite) para extrair o mês da
-                                    venda</li>
-                                <li>Tente criar uma consulta que mostre a média de vendas por mês</li>
-                            </ol>
-                            <div class="exercise-tip">💡 <strong>Dica:</strong> O CASE WHEN é o "SE" do SQL. Essencial
-                                para criar faixas etárias, categorias de produtos e status.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- WEEK 7-8: PROJECTS -->
-        <section class="content-section" id="section-week78">
-            <div class="section-header">
-                <div class="week-badge week-badge--red">SEMANA 7–8</div>
-                <h1>3 Projetos Fortes</h1>
-                <p class="section-subtitle">Projetos reais ligados à sua experiência — o que vai te destacar</p>
-            </div>
-
-            <div class="project-grid">
-                <div class="project-card project-card--logistics">
-                    <div class="project-header">
-                        <span class="project-number">PROJETO 1</span>
-                        <h3>Dashboard de Performance Logística</h3>
-                    </div>
-                    <div class="project-body">
-                        <h4>📊 Métricas obrigatórias:</h4>
-                        <div class="checklist">
-                            <label class="check-item"><input type="checkbox" data-task="w78-1"> Pedidos por dia (volume
-                                e tendência)</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-2"> Tempo de processamento
-                                (média, mediana)</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-3"> Atraso por
-                                transportadora (ranking)</label>
-                        </div>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aula recomendada:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/S263Oa8n8Is"
-                                            title="Dashboard Logística Power BI"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Hashtag Treinamentos — Dashboard de Logística Completo
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício:</h4>
-                            <ol class="exercise-steps">
-                                <li>Baixe um dataset de fretes ou use o Superstore filtrando por transporte</li>
-                                <li>Crie métricas de SLA (prometido vs real)</li>
-                                <li>Monte o dashboard com visual focado em monitoramento</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card project-card--stock">
-                    <div class="project-header">
-                        <span class="project-number">PROJETO 2</span>
-                        <h3>Análise de Estoque</h3>
-                    </div>
-                    <div class="project-body">
-                        <h4>📊 Métricas obrigatórias:</h4>
-                        <div class="checklist">
-                            <label class="check-item"><input type="checkbox" data-task="w78-4"> Giro de estoque por
-                                produto</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-5"> Previsão de falta
-                                (estoque crítico)</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-6"> Curva ABC de
-                                produtos</label>
-                        </div>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aula recomendada:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/6iT-BfD7t8E"
-                                            title="Controle de Estoque Power BI"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Hashtag Treinamentos — Dashboard de Estoque e Compras
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício:</h4>
-                            <ol class="exercise-steps">
-                                <li>Crie uma medida para 'Duração do Estoque' (Estoque Atual / Média de Saídas)</li>
-                                <li>Use formatação condicional para alertar sobre SKUs críticos</li>
-                                <li>Crie o gráfico de Pareto (Curva ABC) manual ou via DAX</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card project-card--finance">
-                    <div class="project-header">
-                        <span class="project-number">PROJETO 3</span>
-                        <h3>Dashboard Financeiro de Operação</h3>
-                    </div>
-                    <div class="project-body">
-                        <h4>📊 Métricas obrigatórias:</h4>
-                        <div class="checklist">
-                            <label class="check-item"><input type="checkbox" data-task="w78-7"> Custo logístico total e
-                                por operação</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-8"> Volume de pedidos vs
-                                custo</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-9"> Lucro por região</label>
-                        </div>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aula recomendada:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/NImtCqQO36U"
-                                            title="Dashboard Financeiro Power BI"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Hashtag Treinamentos — Dashboard Financeiro Passo a
-                                        Passo</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="exercise-detail">
-                            <h4>🏋️ Exercício:</h4>
-                            <ol class="exercise-steps">
-                                <li>Importe dados de Receitas e Despesas</li>
-                                <li>Crie a DRE (Demonstrativo de Resultado) no Power BI</li>
-                                <li>Adicione acompanhamento de metas fixas vs realizado</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card project-card--career">
-                    <div class="project-header">
-                        <span class="project-number">PORTFOLIO</span>
-                        <h3>Portfolio e Carreira</h3>
-                    </div>
-                    <div class="project-body">
-                        <h4>📊 Metas de Visibilidade:</h4>
-                        <div class="checklist">
-                            <label class="check-item"><input type="checkbox" data-task="w78-10"> Criar perfil otimizado
-                                no LinkedIn</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-11"> Criar repositório no
-                                GitHub para os 3 projetos</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-12"> Postar primeiro projeto
-                                no LinkedIn com Storytelling</label>
-                            <label class="check-item"><input type="checkbox" data-task="w78-13"> Criar PDF de portfolio
-                                (NovyPro ou similar)</label>
-                        </div>
-                        <div class="video-section">
-                            <h4>🎬 Vídeo-aula recomendada:</h4>
-                            <div class="video-grid">
-                                <div class="video-item">
-                                    <div class="video-wrapper">
-                                        <iframe src="https://www.youtube.com/embed/-E1315Wd9d0"
-                                            title="LinkedIn para Analista de Dados"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                    <div class="video-title">📌 Hashtag Treinamentos — Como ser contratado em Dados
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- EXCEL WEB (LUCKYSHEET) -->
-        <section class="content-section" id="section-excel-practice" style="height: calc(100vh - 80px);">
-            <div class="section-header" style="margin-bottom: 24px;">
-                <div class="week-badge week-badge--green">PRÁTICA NO NAVEGADOR</div>
-                <h1>Excel Web Integrado</h1>
-                <p class="section-subtitle">Pratique as fórmulas e atalhos sem precisar sair do site! Teste gráficos e
-                    tabelas dinâmicas livremente.</p>
-            </div>
-            <!-- Hack para o luckysheet renderizar perfeitamente -->
-            <div
-                style="position: relative; width: 100%; height: calc(100% - 100px); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-glass); background: #fff;">
-                <div id="luckysheet-container"
-                    style="margin:0px;padding:0px;position:absolute;width:100%;height:100%;left: 0px;top: 0px;"></div>
-            </div>
-        </section>
-
-        <!-- SQL TERM WEB -->
-        <section class="content-section" id="section-sql-practice">
-            <div class="section-header" style="margin-bottom: 24px;">
-                <div class="week-badge week-badge--amber">PRÁTICA NO NAVEGADOR</div>
-                <h1>Terminal SQL Nativo</h1>
-                <p class="section-subtitle">Escreva queries SQL e veja o resultado abaixo. Já carregamos as tabelas:
-                    <b>clientes, produtos e vendas</b>.
+            <div style="background: var(--bg-surface); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                <h3 style="margin-bottom: 16px;">Otimização de Currículo</h3>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+                    Você pediu ferramentas reais para o seu currículo. Adicionamos a seção <strong>Projetos Portfólio 🚀</strong>.
+                    Lá você construirá do zero 3 projetos profissionais (Logística, E-commerce, Finanças) com datasets reais, simulando o dia a dia de um Analista de Dados Pleno. 
+                    Sem teoria chata: apenas execução prática no console SQL ao lado e no Power BI.
                 </p>
             </div>
-            <div class="sql-container">
-                <div class="sql-editor-wrapper">
-                    <textarea id="sqlTerminalInput" spellcheck="false">-- Dê play para ver todas as vendas combinadas com os nomes dos clientes
-SELECT v.id_venda, c.nome, p.produto, v.quantidade, (v.quantidade * p.preco) as total
+        </section>
+
+        <!-- MODULE EXCEL -->
+        <section class="content-section" id="module-excel">
+            <div class="header-banner">
+                <div class="header-title">
+                    <h2 style="background: var(--gradient-success); -webkit-background-clip: text;">Excel PRO</h2>
+                    <p>Além da Tabela Dinâmica: Extraia ouro de dados brutos.</p>
+                </div>
+            </div>
+
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">
+                            <div class="module-number">01</div>
+                            <div>
+                                <h3>Limpeza & PROCV / PROCX</h3>
+                                <p>Cerca de 60% do tempo de um analista é limpando dados.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-body">
+                        <div>
+                            <div class="tasks-list">
+                                <label class="task-item">
+                                    <input type="checkbox" data-task="ex-1" style="display:none">
+                                    <div class="task-checkbox"></div>
+                                    <div class="task-content">
+                                        <h4>Dominar PROCX (Busca 360)</h4>
+                                        <p>Substituir todos os PROCVs pelo inovador PROCX.</p>
+                                    </div>
+                                </label>
+                                <label class="task-item">
+                                    <input type="checkbox" data-task="ex-2" style="display:none">
+                                    <div class="task-checkbox"></div>
+                                    <div class="task-content">
+                                        <h4>Funções de Texto</h4>
+                                        <p>Uso de ARRUMAR, ESQUERDA, TEXTO PARA COLUNAS.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/Ld69Im4QhKQ" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">
+                            <div class="module-number">02</div>
+                            <div>
+                                <h3>Data Storytelling e Gráficos</h3>
+                                <p>Crie dashboards interativos direto no Excel.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-body">
+                        <div>
+                            <div class="tasks-list">
+                                <label class="task-item">
+                                    <input type="checkbox" data-task="ex-3" style="display:none">
+                                    <div class="task-checkbox"></div>
+                                    <div class="task-content">
+                                        <h4>Tabelas Dinâmicas Premium</h4>
+                                        <p>Agrupamento avançado, Segmentação de Dados bonita.</p>
+                                    </div>
+                                </label>
+                                <label class="task-item">
+                                    <input type="checkbox" data-task="ex-4" style="display:none">
+                                    <div class="task-checkbox"></div>
+                                    <div class="task-content">
+                                        <h4>Montagem de Dashboard</h4>
+                                        <p>Conectar Gráficos à mesma Segmentação de Dados.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/ivlA5b2sC9g" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE POWER BI -->
+        <section class="content-section" id="module-powerbi">
+            <div class="header-banner">
+                <div class="header-title">
+                    <h2 style="background: var(--gradient-warning); -webkit-background-clip: text;">Power BI</h2>
+                    <p>Modele conexões, crie métricas em DAX e impressione a diretoria. O Diferencial de salário.</p>
+                </div>
+            </div>
+
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">
+                            <div class="module-number">01</div>
+                            <div>
+                                <h3>ETL e Modelagem (Star Schema)</h3>
+                                <p>O segredo de um dashboard performático.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-body">
+                        <div class="tasks-list">
+                            <label class="task-item">
+                                <input type="checkbox" data-task="pb-1" style="display:none">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <h4>Power Query Essencial</h4>
+                                    <p>Tratar colunas e formatar tipos de dados perfeitamente.</p>
+                                </div>
+                            </label>
+                            <label class="task-item">
+                                <input type="checkbox" data-task="pb-2" style="display:none">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <h4>Tabela Calendário Base</h4>
+                                    <p>Criar dCalendario dinâmica via DAX ou M.</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/UFGe25gydxo" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">
+                            <div class="module-number">02</div>
+                            <div>
+                                <h3>Fórmulas DAX</h3>
+                                <p>Inteligência de tempo e métricas dinâmicas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-body">
+                        <div class="tasks-list">
+                            <label class="task-item">
+                                <input type="checkbox" data-task="pb-3" style="display:none">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <h4>A Base: CALCULATE</h4>
+                                    <p>Dominar o CALCULATE e FILTER.</p>
+                                </div>
+                            </label>
+                            <label class="task-item">
+                                <input type="checkbox" data-task="pb-4" style="display:none">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <h4>YTD e YoY (Year over Year)</h4>
+                                    <p>Medir crescimento percentual vs. o ano passado.</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/QnCSgEsIHMA" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE SQL -->
+        <section class="content-section" id="module-sql">
+            <div class="header-banner">
+                <div class="header-title">
+                    <h2 style="background: linear-gradient(135deg, #f43f5e, #fb923c); -webkit-background-clip: text;">Comandos SQL</h2>
+                    <p>O Idioma dos Bancos de Dados de Big Techs e Startups.</p>
+                </div>
+            </div>
+
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-title">
+                            <div class="module-number">01</div>
+                            <div>
+                                <h3>Onde os Dados Moram: Agregações e JOINs</h3>
+                                <p>Cruce Tabelas de forma ágil com INNER JOIN e crie SUM().</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-body">
+                        <div class="tasks-list">
+                            <label class="task-item">
+                                <input type="checkbox" data-task="sq-1" style="display:none">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <h4>Dominar INNER e LEFT JOIN</h4>
+                                    <p>Fundamentos para unir Fatos e Dimensões.</p>
+                                </div>
+                            </label>
+                            <label class="task-item">
+                                <input type="checkbox" data-task="sq-2" style="display:none">
+                                <div class="task-checkbox"></div>
+                                <div class="task-content">
+                                    <h4>Group By Avançado</h4>
+                                    <p>Sumarizando dados corretamente com HAVING.</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/F4GlUHsSaTs" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO / REAL PROJECTS WOW FACTOR -->
+        <section class="content-section" id="portfolio">
+            <div class="header-banner" style="border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 0 40px rgba(139, 92, 246, 0.1);">
+                <div class="header-title">
+                    <h2 style="background: var(--gradient-premium); -webkit-background-clip: text;">Construtor de Portfólio</h2>
+                    <p>As 3 frentes para provar experiência prática. Faça estes e chame atenção das empresas amanhã.</p>
+                </div>
+            </div>
+
+            <div class="project-showcase">
+                <!-- PROJECT 1 -->
+                <div class="project-card pro">
+                    <div class="project-image">
+                        📈
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag tag-purple">Power BI / Excel</span>
+                        <h3>Dashboard de Varejo End-to-End</h3>
+                        <p>Simule a matriz de uma superloja. Você deve extrair dados brutos de faturamento, montar o modelo Star Schema, e exibir lucros por estado em mapas cloropléticos.</p>
+                        
+                        <ul class="project-features">
+                            <li>Processamento ETL com Power Query</li>
+                            <li>Medidas: Margem %, TKT Médio, YTD</li>
+                            <li>Filtros fixos na tela (Segmentadores UI)</li>
+                        </ul>
+                        
+                        <a href="https://www.kaggle.com/datasets/brazil-ecommerce" target="_blank" class="btn-primary">⬇ Baixar Dataset (Olist/Kaggle)</a>
+                        <button class="btn-secondary copy-linkedin-btn" data-proj="varejo">Copiar Pitch pro LinkedIn</button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2 -->
+                <div class="project-card pro">
+                    <div class="project-image">
+                        🚚
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag tag-red">SQL + Lógica</span>
+                        <h3>Análise de Atraso Logístico</h3>
+                        <p>O time de operações está sofrendo multas por lentidão nas entregas. Qual galpão é o culpado? Use SQL para expor o erro sistêmico.</p>
+                        
+                        <ul class="project-features">
+                            <li>Uso pesado de CASE WHEN</li>
+                            <li>DATEDIFF para calcular SLA de Envio</li>
+                            <li>Identificar gargalos por transportadora</li>
+                        </ul>
+                        
+                        <button class="btn-primary" onclick="document.querySelector('[data-target=\'sim-sql\']').click()">💻 Testar Resolução no SQL Nativo</button>
+                        <button class="btn-secondary copy-linkedin-btn" data-proj="logistica">Copiar Pitch pro LinkedIn</button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3 -->
+                <div class="project-card pro">
+                    <div class="project-image">
+                        💰
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag" style="background: rgba(16,185,129,0.1); color: var(--success);">Análise Ad-hoc</span>
+                        <h3>Churn Financeiro / Retenção</h3>
+                        <p>Descubra o perfil ideal que para de assinar nosso serviço e gere 3 insights de negócios (Storytelling).</p>
+                        
+                        <ul class="project-features">
+                            <li>Matriz de Correlação (Excel puro)</li>
+                            <li>Agrupamento Etário e Financeiro</li>
+                            <li>Slides executivos de alto impacto</li>
+                        </ul>
+                        
+                        <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn" target="_blank" class="btn-primary">⬇ Baixar Dataset (Churn)</a>
+                        <button class="btn-secondary copy-linkedin-btn" data-proj="churn">Copiar Pitch pro LinkedIn</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SQL CONSOLE -->
+        <section class="content-section" id="sim-sql">
+            <div class="simulator-container">
+                <div style="margin-bottom: 24px;">
+                    <h3>SQL Workspace</h3>
+                    <p style="color: var(--text-muted); font-size: 13px;">Execute queries reais direto no navegador via WebAssembly. <br>Banco carregado: <code>vendas</code>, <code>clientes</code>, <code>produtos</code></p>
+                </div>
+                
+                <div class="sql-area">
+                    <div>
+                        <textarea class="code-editor" id="sqlTerminalInput" spellcheck="false" placeholder="SELECT * FROM clientes LIMIT 5;">-- Exemplo de Análise: Qual estado dá mais lucro?
+SELECT 
+    c.estado,
+    SUM(v.quantidade * p.preco) as faturamento_total
 FROM vendas v
-INNER JOIN clientes c ON v.id_cliente = c.id_cliente
-INNER JOIN produtos p ON v.id_produto = p.id_produto;
-</textarea>
-                    <div class="sql-actions">
-                        <button id="btnRunSql" class="sql-btn sql-btn-primary">▶ Executar Query</button>
-                        <button id="btnResetSqlDbs" class="sql-btn sql-btn-outline">↻ Restaurar Banco</button>
+JOIN clientes c ON v.id_cliente = c.id_cliente
+JOIN produtos p ON v.id_produto = p.id_produto
+GROUP BY c.estado
+ORDER BY faturamento_total DESC;</textarea>
+                        <div class="sql-actions">
+                            <button id="btnRunSql" class="btn-primary" style="width: auto;">▶ Executar</button>
+                            <button id="btnResetSqlDbs" class="btn-secondary" style="width: auto; margin-top:0;">↻ Resetar Banco</button>
+                        </div>
                     </div>
-                </div>
-                <!-- Hack para overflow da tabela -->
-                <div
-                    style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius:12px; padding:12px; overflow-x: auto; min-height: 200px;">
-                    <div class="sql-results" id="sqlTerminalOutput">
-                        <div style="color:var(--text-muted); text-align:center; padding: 20px;">Clique em "Executar
-                            Query" para ver os resultados.</div>
+                    
+                    <div class="sql-result" id="sqlTerminalOutput">
+                        <div style="color: var(--text-muted); text-align: center; margin-top: 80px;">Aguardando execução...</div>
                     </div>
-                </div>
-                <p class="sql-schema-hint"
-                    style="margin-top: 16px; font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
-                    <b>Tabelas disponíveis no banco local:</b><br />
-                    <code>clientes (id_cliente, nome, estado)</code><br />
-                    <code>produtos (id_produto, produto, categoria, preco)</code><br />
-                    <code>vendas (id_venda, id_cliente, id_produto, quantidade, data_venda)</code>
-                </p>
-            </div>
-        </section>
-
-        <!-- FLASHCARDS -->
-        <section class="content-section" id="section-flashcards">
-            <div class="section-header">
-                <div class="week-badge week-badge--purple">REVISÃO ATIVA</div>
-                <h1>Flashcards de Memorização</h1>
-                <p class="section-subtitle">O teste ativo reforça a memória de longo prazo. Clique no cartão para ver a
-                    resposta!</p>
-            </div>
-
-            <div class="flashcards-filters">
-                <button class="fc-filter active" data-filter="all">Todos</button>
-                <button class="fc-filter" data-filter="excel">Excel</button>
-                <button class="fc-filter" data-filter="powerbi">Power BI</button>
-                <button class="fc-filter" data-filter="sql">SQL</button>
-            </div>
-
-            <div class="flashcards-grid" id="flashcardsGrid">
-                <!-- Javascript will inject cards here -->
-            </div>
-        </section>
-
-        <!-- RESOURCES -->
-        <section class="content-section" id="section-resources">
-            <div class="section-header">
-                <h1>Recursos e Links Úteis</h1>
-                <p class="section-subtitle">Tudo que você precisa em um só lugar</p>
-            </div>
-
-            <div class="resources-grid">
-                <div class="resource-category">
-                    <h3>📗 Excel</h3>
-                    <ul class="resource-list">
-                        <li><a href="https://www.youtube.com/results?search_query=excel+avan%C3%A7ado+analise+de+dados"
-                                target="_blank">YouTube — Excel Avançado para Dados</a></li>
-                        <li><a href="https://www.kaggle.com/datasets" target="_blank">Kaggle — Datasets gratuitos</a>
-                        </li>
-                        <li><a href="https://support.microsoft.com/pt-br/excel" target="_blank">Documentação oficial
-                                Microsoft Excel</a></li>
-                    </ul>
-                </div>
-                <div class="resource-category">
-                    <h3>📊 Power BI</h3>
-                    <ul class="resource-list">
-                        <li><a href="https://learn.microsoft.com/pt-br/power-bi/" target="_blank">Microsoft Learn —
-                                Power BI</a></li>
-                        <li><a href="https://www.youtube.com/results?search_query=power+bi+completo"
-                                target="_blank">YouTube — Curso Power BI</a></li>
-                        <li><a href="https://dax.guide/" target="_blank">DAX Guide — Referência completa</a></li>
-                    </ul>
-                </div>
-                <div class="resource-category">
-                    <h3>🗄️ SQL</h3>
-                    <ul class="resource-list">
-                        <li><a href="https://sqliteonline.com/" target="_blank">SQLite Online — Pratique no
-                                navegador</a></li>
-                        <li><a href="https://www.w3schools.com/sql/" target="_blank">W3Schools — Tutorial SQL</a></li>
-                        <li><a href="https://www.hackerrank.com/domains/sql" target="_blank">HackerRank — Exercícios
-                                SQL</a></li>
-                    </ul>
-                </div>
-                <div class="resource-category">
-                    <h3>🚀 Portfolio e Carreira</h3>
-                    <ul class="resource-list">
-                        <li><a href="https://github.com/" target="_blank">GitHub — Publique seus projetos</a></li>
-                        <li><a href="https://www.novypro.com/" target="_blank">NovyPro — Portfolio Power BI</a></li>
-                        <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn — Otimize seu perfil</a></li>
-                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- SIMULADOS -->
-        <section class="content-section" id="section-simulados">
-            <div class="section-header">
-                <div class="week-badge week-badge--purple">TESTE SEUS CONHECIMENTOS</div>
-                <h1>Simulados Interativos</h1>
-                <p class="section-subtitle">Pratique com questões reais de entrevistas e provas — descubra onde você
-                    precisa melhorar</p>
-            </div>
-
-            <div class="quiz-selector">
-                <button class="quiz-btn active" data-quiz="excel">📗 Excel</button>
-                <button class="quiz-btn" data-quiz="powerbi">📊 Power BI</button>
-                <button class="quiz-btn" data-quiz="sql">🗄️ SQL</button>
-                <button class="quiz-btn" data-quiz="all">🎯 Simulado Completo</button>
-            </div>
-
-            <div class="quiz-stats-bar">
-                <div class="quiz-stat"><span class="quiz-stat-label">Questão</span><span class="quiz-stat-value"
-                        id="quizCurrent">0</span>/<span class="quiz-stat-value" id="quizTotal">0</span></div>
-                <div class="quiz-stat"><span class="quiz-stat-label">Acertos</span><span
-                        class="quiz-stat-value quiz-stat--green" id="quizCorrect">0</span></div>
-                <div class="quiz-stat"><span class="quiz-stat-label">Erros</span><span
-                        class="quiz-stat-value quiz-stat--red" id="quizWrong">0</span></div>
-                <div class="quiz-stat"><span class="quiz-stat-label">Nota</span><span
-                        class="quiz-stat-value quiz-stat--blue" id="quizScore">0%</span></div>
-            </div>
-
-            <div class="quiz-container" id="quizContainer">
-                <div class="quiz-start-screen" id="quizStartScreen">
-                    <div class="quiz-start-icon">🧠</div>
-                    <h2>Pronto para testar seus conhecimentos?</h2>
-                    <p>Escolha uma matéria acima e clique em iniciar. Cada simulado tem 10 questões com tempo de 60
-                        segundos por pergunta.</p>
-                    <button class="quiz-start-btn" id="quizStartBtn">🚀 Iniciar Simulado</button>
+        <!-- EXCEL SIMULATOR -->
+        <section class="content-section" id="sim-excel">
+            <div style="height: calc(100vh - 120px); display: flex; flex-direction: column;">
+                <div style="margin-bottom: 16px;">
+                    <h3>Excel Cloud Emulator</h3>
+                    <p style="color: var(--text-muted); font-size: 13px;">Simulação nativa de planilhas para você treinar fórmulas e manipulações rápidas. (Pode usar atalhos do teclado!)</p>
                 </div>
-
-                <div class="quiz-question-screen" id="quizQuestionScreen" style="display:none">
-                    <div class="quiz-timer-bar">
-                        <div class="quiz-timer-fill" id="quizTimerFill"></div>
-                    </div>
-                    <div class="quiz-timer-text" id="quizTimerText">60s</div>
-
-                    <div class="quiz-category-tag" id="quizCategoryTag"></div>
-                    <h2 class="quiz-question-text" id="quizQuestionText"></h2>
-
-                    <div class="quiz-options" id="quizOptions"></div>
-
-                    <div class="quiz-feedback" id="quizFeedback" style="display:none">
-                        <div class="quiz-feedback-icon" id="quizFeedbackIcon"></div>
-                        <div class="quiz-feedback-text" id="quizFeedbackText"></div>
-                        <div class="quiz-explanation" id="quizExplanation"></div>
-                        <button class="quiz-next-btn" id="quizNextBtn">Próxima →</button>
-                    </div>
-                </div>
-
-                <div class="quiz-result-screen" id="quizResultScreen" style="display:none">
-                    <div class="quiz-result-icon" id="quizResultIcon"></div>
-                    <h2 id="quizResultTitle"></h2>
-                    <p class="quiz-result-subtitle" id="quizResultSubtitle"></p>
-                    <div class="quiz-result-stats">
-                        <div class="quiz-result-stat">
-                            <span class="quiz-result-number" id="quizFinalScore">0%</span>
-                            <span class="quiz-result-label">Nota Final</span>
-                        </div>
-                        <div class="quiz-result-stat">
-                            <span class="quiz-result-number" id="quizFinalCorrect">0</span>
-                            <span class="quiz-result-label">Acertos</span>
-                        </div>
-                        <div class="quiz-result-stat">
-                            <span class="quiz-result-number" id="quizFinalTime">0s</span>
-                            <span class="quiz-result-label">Tempo Médio</span>
-                        </div>
-                    </div>
-                    <div class="quiz-result-review" id="quizResultReview"></div>
-                    <button class="quiz-start-btn" id="quizRetryBtn">🔄 Tentar Novamente</button>
+                <div style="flex:1; border-radius: var(--radius-md); overflow: hidden; position: relative;">
+                    <div id="luckysheet-container" style="margin:0;padding:0;position:absolute;width:100%;height:100%;left: 0;top: 0;"></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- FLOATING PRODUCTIVITY TOOLS -->
-    <div class="floating-tools" id="floatingTools">
-        <button class="tool-btn" id="btnPomodoro" title="Foco (Pomodoro)">⏱️</button>
-        <button class="tool-btn tool-btn-pulse" id="btnNeuralAudio" title="Foco Neural Profundo (Audio)">🎧</button>
-        <button class="tool-btn" id="btnNotes" title="Minhas Anotações">📝</button>
+    <!-- FLOATING DOCK -->
+    <div class="floating-dock">
+        <button class="dock-btn" id="dock-pomo" title="Foco Pomodoro">⏱️</button>
+        <button class="dock-btn pulse-glow" id="dock-audio" title="Brain Sync (Audio)">🎧</button>
+        <button class="dock-btn" id="dock-notes" title="Anotações">📝</button>
     </div>
 
-    <!-- NEURAL AUDIO WIDGET -->
-    <div class="tool-widget" id="widgetNeuralAudio">
+    <!-- WIDGETS -->
+    <div class="tool-widget" id="widget-audio">
         <div class="widget-header">
             <h3>🎧 Foco Neural Profundo</h3>
-            <button class="close-widget" data-widget="widgetNeuralAudio">✕</button>
+            <button class="close-widget" data-close="widget-audio">✕</button>
         </div>
-        <div class="widget-body">
-            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
-                Frequências endossadas pela neurociência. O <b>Ruído Marrom</b> amortece distrações muito melhor que o
-                ruído branco, reduzindo o cansaço auditivo. Use em volume médio-baixo para concentração extrema sem
-                exaustão.
-            </p>
-            <div class="neural-control-group">
-                <button class="pomo-btn neural-btn" id="toggleBrownNoise">▶ Ruído Marrom</button>
-                <div class="neural-volume-slider">
-                    <span>🔉</span>
-                    <input type="range" id="brownVolume" min="0" max="100" value="30">
-                </div>
-            </div>
-            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin: 16px 0;">
-                <b>Batidas Isochrônicas (40Hz Gamma):</b> Induz o cérebro a estados de alerta mental e alta retenção da
-                memória, otimizando o aprendizado analítico.
-            </p>
-            <div class="neural-control-group">
-                <button class="pomo-btn neural-btn-purple" id="toggleGammaWave">▶ Ondas Gamma (40Hz)</button>
-                <div class="neural-volume-slider">
-                    <span>🔉</span>
-                    <input type="range" id="gammaVolume" min="0" max="100" value="50">
-                </div>
-            </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Reduza distrações usando Brown Noise ou estimule a memória com ondas Gamma 40Hz. Clinicamente comprovado.</p>
+        
+        <div style="display:flex; justify-content: space-between; margin-bottom: 12px;">
+            <button class="btn-secondary" id="toggleBrownNoise" style="margin:0; width: 48%; border-color: rgba(139, 92, 246, 0.4); color: var(--purple);">▶ Marrom</button>
+            <button class="btn-secondary" id="toggleGammaWave" style="margin:0; width: 48%; border-color: rgba(59, 130, 246, 0.4); color: var(--text-accent);">▶ Gamma 40Hz</button>
+        </div>
+        
+        <div style="display:flex; align-items:center; gap: 12px; font-size: 12px; color: var(--text-muted);">
+            Volume Base
+            <input type="range" id="brownVolume" min="0" max="100" value="30" style="flex:1">
         </div>
     </div>
 
-    <!-- POMODORO WIDGET -->
-    <div class="tool-widget" id="widgetPomodoro">
+    <div class="tool-widget" id="widget-pomo">
         <div class="widget-header">
-            <h3>⏱️ Pomodoro Foco</h3>
-            <button class="close-widget" data-widget="widgetPomodoro">✕</button>
+            <h3>⏱️ Timer Pomodoro</h3>
+            <button class="close-widget" data-close="widget-pomo">✕</button>
         </div>
-        <div class="widget-body">
-            <div class="pomodoro-display" id="pomodoroTime">25:00</div>
-            <div class="pomodoro-controls">
-                <button class="pomo-btn" id="pomoStart">▶ Pomo</button>
-                <button class="pomo-btn pomo-btn-yellow" id="pomoBreak">⏸ Pausa</button>
-                <button class="pomo-btn pomo-btn-outline" id="pomoReset">↻</button>
-            </div>
-            <div style="margin-top: 16px; font-size: 12px; color: var(--text-muted); text-align: center;">
-                Foque 25m, descanse 5m.
-            </div>
+        <div class="timer-display" id="pomodoroTime">25:00</div>
+        <div class="pomo-controls">
+            <button class="btn-primary" id="pomoStart" style="padding: 10px; flex:1; margin:0;">Focar</button>
+            <button class="btn-secondary" id="pomoBreak" style="padding: 10px; flex:1; margin:0; border-color:rgba(245, 158, 11, 0.5); color: var(--warning);">Pausa 5m</button>
+            <button class="btn-secondary" id="pomoReset" style="padding: 10px; width: 44px; margin:0;">↻</button>
         </div>
     </div>
 
-    <!-- NOTES WIDGET -->
-    <div class="tool-widget" id="widgetNotes">
+    <div class="tool-widget" id="widget-notes">
         <div class="widget-header">
-            <h3>📝 Notas Rápidas</h3>
-            <button class="close-widget" data-widget="widgetNotes">✕</button>
+            <h3>📝 Caderno Lógico</h3>
+            <button class="close-widget" data-close="widget-notes">✕</button>
         </div>
-        <div class="widget-body">
-            <textarea id="quickNotes"
-                placeholder="Cole aqui atalhos, fórmulas ou ideias bacanas que você não quer esquecer...&#10;&#10;(Salva automático para quando você voltar!)"></textarea>
-            <div style="display:flex; justify-content: space-between; margin-top: 8px;">
-                <span style="font-size: 11px; color: var(--accent-green); display:none;" id="notesSavedLabel">✓
-                    Salvo</span>
-                <button id="clearNotesBtn"
-                    style="background: none; border: none; font-size: 11px; color: var(--accent-red); cursor: pointer;">Limpar</button>
-            </div>
-        </div>
+        <textarea id="quickNotes" class="code-editor" style="height: 150px;" placeholder="Cole aqui seus insights e SQLs rápidos..."></textarea>
     </div>
 
     <script src="app.js"></script>
 </body>
-
 </html>
