@@ -10,13 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Dependencies: Luckysheet -->
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/css/pluginsCss.css' />
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/plugins.css' />
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/css/luckysheet.css' />
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/assets/iconfont/iconfont.css' />
-    <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/js/plugin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/luckysheet.umd.js"></script>
 
     <!-- Dependencies: SQL.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
@@ -72,9 +65,7 @@
                     <li class="nav-item" data-target="sim-sql">
                         <i>💻</i> Console SQL
                     </li>
-                    <li class="nav-item" data-target="sim-excel">
-                        <i>📑</i> Excel Emulador
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -137,7 +128,7 @@
         <section class="content-section" id="module-excel">
             <div class="header-banner">
                 <div class="header-title">
-                    <h2 style="background: var(--gradient-success); -webkit-background-clip: text;">Excel PRO</h2>
+                    <h2 style="background: var(--gradient-success); -webkit-background-clip: text; background-clip: text;">Excel PRO</h2>
                     <p>Além da Tabela Dinâmica: Extraia ouro de dados brutos.</p>
                 </div>
             </div>
@@ -173,7 +164,7 @@
                                     </div>
                                 </label>
                                 <div style="margin-top: 16px;">
-                                    <button class="btn-primary" onclick="document.querySelector('[data-target=\'sim-excel\']').click()" style="width: 100%;">💻 Simulador: Praticar Excel PROCV</button>
+                                    <a href="dados_exercicios.csv" download class="btn-primary" style="display:block; text-align:center; padding: 10px; border-radius: 6px; text-decoration: none;">📥 Baixar Base para Praticar (.csv)</a>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +206,7 @@
                                     </div>
                                 </label>
                                 <div style="margin-top: 16px;">
-                                    <button class="btn-primary" onclick="document.querySelector('[data-target=\'sim-excel\']').click()" style="width: 100%;">💻 Testar Fórmulas no Emulador Cloud</button>
+                                    <a href="dados_exercicios.csv" download class="btn-primary" style="display:block; text-align:center; padding: 10px; border-radius: 6px; text-decoration: none;">📥 Baixar Base para Praticar (.csv)</a>
                                 </div>
                             </div>
                         </div>
@@ -275,7 +266,7 @@
         <section class="content-section" id="module-powerbi">
             <div class="header-banner">
                 <div class="header-title">
-                    <h2 style="background: var(--gradient-warning); -webkit-background-clip: text;">Power BI</h2>
+                    <h2 style="background: var(--gradient-warning); -webkit-background-clip: text; background-clip: text;">Power BI</h2>
                     <p>Modele conexões, crie métricas em DAX e impressione a diretoria. O Diferencial de salário.</p>
                 </div>
             </div>
@@ -363,7 +354,7 @@
         <section class="content-section" id="module-sql">
             <div class="header-banner">
                 <div class="header-title">
-                    <h2 style="background: linear-gradient(135deg, #f43f5e, #fb923c); -webkit-background-clip: text;">Comandos SQL</h2>
+                    <h2 style="background: linear-gradient(135deg, #f43f5e, #fb923c); -webkit-background-clip: text; background-clip: text;">Comandos SQL</h2>
                     <p>O Idioma dos Bancos de Dados de Big Techs e Startups.</p>
                 </div>
             </div>
@@ -413,7 +404,7 @@
         <section class="content-section" id="portfolio">
             <div class="header-banner" style="border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 0 40px rgba(139, 92, 246, 0.1);">
                 <div class="header-title">
-                    <h2 style="background: var(--gradient-premium); -webkit-background-clip: text;">Construtor de Portfólio</h2>
+                    <h2 style="background: var(--gradient-premium); -webkit-background-clip: text; background-clip: text;">Construtor de Portfólio</h2>
                     <p>As 3 frentes para provar experiência prática. Faça estes e chame atenção das empresas amanhã.</p>
                 </div>
             </div>
@@ -517,18 +508,7 @@ ORDER BY faturamento_total DESC;</textarea>
             </div>
         </section>
 
-        <!-- EXCEL SIMULATOR -->
-        <section class="content-section" id="sim-excel">
-            <div style="height: calc(100vh - 120px); display: flex; flex-direction: column;">
-                <div style="margin-bottom: 16px;">
-                    <h3>Excel Cloud Emulator</h3>
-                    <p style="color: var(--text-muted); font-size: 13px;">Simulação nativa de planilhas para você treinar fórmulas e manipulações rápidas. (Pode usar atalhos do teclado!)</p>
-                </div>
-                <div style="flex:1; border-radius: var(--radius-md); overflow: hidden; position: relative;">
-                    <div id="luckysheet-container" style="margin:0;padding:0;position:absolute;width:100%;height:100%;left: 0;top: 0;"></div>
-                </div>
-            </div>
-        </section>
+
     </main>
 
     <!-- FLOATING DOCK -->

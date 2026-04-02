@@ -12,7 +12,6 @@ function saveProgress(progress) {
 }
 
 // ===== NAVIGATION =====
-let luckysheetInitialized = false;
 
 function initNavigation() {
     const navItems = document.querySelectorAll('.nav-item');
@@ -35,9 +34,6 @@ function initNavigation() {
             targetSection.style.animation = 'fadeUp 0.4s ease forwards';
         }
 
-        if (target === 'sim-excel' && !luckysheetInitialized) {
-            setTimeout(initLuckySheet, 100);
-        }
     }
 
     const savedTab = localStorage.getItem('datapath_pro_tab') || 'dashboard';
@@ -50,51 +46,6 @@ function initNavigation() {
             localStorage.setItem('datapath_pro_tab', target);
         });
     });
-}
-
-function initLuckySheet() {
-    if (typeof luckysheet !== 'undefined' && !luckysheetInitialized) {
-        luckysheet.create({
-            container: 'luckysheet-container',
-            lang: 'en',
-            showinfobar: false,
-            showsheetbar: true,
-            data: [{
-                "name": "Prática Excel",
-                    "celldata": [
-                        {r:1, c:0, v:{v:"--- PRODUTOS (Matriz) ---", m:"--- PRODUTOS (Matriz) ---", bl:1}},
-                        {r:2, c:0, v:{v:"CÓDIGO", m:"CÓDIGO", bl:1, bg:"#f1f5f9"}},
-                        {r:2, c:1, v:{v:"NOME", m:"NOME", bl:1, bg:"#f1f5f9"}},
-                        {r:2, c:2, v:{v:"PREÇO", m:"PREÇO", bl:1, bg:"#f1f5f9"}},
-                        {r:3, c:0, v:{v:"1001", m:"1001"}}, {r:3, c:1, v:{v:"Cadeira Plus", m:"Cadeira Plus"}}, {r:3, c:2, v:{v:"850.00", m:"850.00"}},
-                        {r:4, c:0, v:{v:"1002", m:"1002"}}, {r:4, c:1, v:{v:"Mesa Office", m:"Mesa Office"}}, {r:4, c:2, v:{v:"1200.00", m:"1200.00"}},
-                        {r:5, c:0, v:{v:"1003", m:"1003"}}, {r:5, c:1, v:{v:"Luminária", m:"Luminária"}}, {r:5, c:2, v:{v:"150.00", m:"150.00"}},
-                        
-                        {r:7, c:0, v:{v:"--- EXERCÍCIO PRÁTICO ---", m:"--- EXERCÍCIO PRÁTICO ---", bl:1}},
-                        {r:8, c:0, v:{v:"CÓD. BUSCADO:", m:"CÓD. BUSCADO:", bl:1}},
-                        {r:8, c:1, v:{v:1002, m:"1002", bg:"#fef08a"}},
-                        {r:9, c:0, v:{v:"QUAL O PREÇO?", m:"QUAL O PREÇO?", bl:1}},
-                        {r:9, c:1, v:{v:"", m:"", bg:"#e0e7ff"}},
-
-                        {r:11, c:0, v:{v:"💡 Missão Diária:", m:"💡 Missão Diária:", bl:1, fc:"#ca8a04"}},
-                        {r:12, c:0, v:{v:"1. Clique na célula azul B10 (ao lado de 'QUAL O PREÇO?').", m:"1. Clique na célula azul B10 (ao lado de 'QUAL O PREÇO?').", fc:"#64748b"}},
-                        {r:13, c:0, v:{v:"2. Extraia o preço do código '1002' usando a fórmula de busca.", m:"2. Extraia o preço do código '1002' usando a fórmula de busca.", fc:"#64748b"}},
-                        {r:14, c:0, v:{v:"3. AVISO: Simuladores web globais usam fórmulas em INGLÊS.", m:"3. AVISO: Simuladores web globais usam fórmulas em INGLÊS.", fc:"#dc2626", bl:1}},
-                        {r:15, c:0, v:{v:"Sempre use =VLOOKUP em vez de =PROCV (E use VÍRGULAS).", m:"Sempre use =VLOOKUP em vez de =PROCV (E use VÍRGULAS).", fc:"#dc2626"}},
-                        {r:16, c:0, v:{v:"Exemplo Real: =VLOOKUP(B9, A3:C6, 3, 0)", m:"Exemplo Real: =VLOOKUP(B9, A3:C6, 3, 0)", fc:"#64748b"}}
-                    ],
-                "config": {
-                    "columnlen": {
-                        "0": 400,
-                        "1": 150,
-                        "2": 150
-                    }
-                },
-                "index": 0
-            }]
-        });
-        luckysheetInitialized = true;
-    }
 }
 
 // ===== CHECKBOX & PROGRESS LOGIC =====
