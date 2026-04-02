@@ -771,10 +771,6 @@ body::before {
     padding: 8px 16px; border-radius: 20px; border: none; font-weight: 600; cursor: pointer; font-size: 12px;
 }
 
-/* QUICK HACKS FOR LUCKYSHEET IN DARK MODE */
-#luckysheet-container {
-    filter: invert(0.9) hue-rotate(180deg);
-}
 
 /* ANIMATIONS */
 .pulse-glow {
