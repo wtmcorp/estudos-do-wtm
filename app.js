@@ -56,7 +56,7 @@ function initLuckySheet() {
     if (typeof luckysheet !== 'undefined' && !luckysheetInitialized) {
         luckysheet.create({
             container: 'luckysheet-container',
-            lang: 'pt',
+            lang: 'en',
             showinfobar: false,
             showsheetbar: true,
             data: [{
@@ -78,13 +78,14 @@ function initLuckySheet() {
 
                         {r:11, c:0, v:{v:"💡 Missão Diária:", m:"💡 Missão Diária:", bl:1, fc:"#ca8a04"}},
                         {r:12, c:0, v:{v:"1. Clique na célula azul B10 (ao lado de 'QUAL O PREÇO?').", m:"1. Clique na célula azul B10 (ao lado de 'QUAL O PREÇO?').", fc:"#64748b"}},
-                        {r:13, c:0, v:{v:"2. Escreva a fórmula para extrair o preço baseando-se no Código 1002.", m:"2. Escreva a fórmula para extrair o preço baseando-se no Código 1002.", fc:"#64748b"}},
-                        {r:14, c:0, v:{v:"3. O emulador está em português, use o =PROCV igual no seu computador.", m:"3. O emulador está em português, use o =PROCV igual no seu computador.", fc:"#64748b"}},
-                        {r:15, c:0, v:{v:"Lembrete: Use vírgula no lugar do ponto e vírgula -> =PROCV(B9, A3:C6, 3, 0)", m:"Lembrete: Use vírgula no lugar do ponto e vírgula -> =PROCV(B9, A3:C6, 3, 0)", fc:"#64748b"}}
+                        {r:13, c:0, v:{v:"2. Extraia o preço do código '1002' usando a fórmula de busca.", m:"2. Extraia o preço do código '1002' usando a fórmula de busca.", fc:"#64748b"}},
+                        {r:14, c:0, v:{v:"3. AVISO: Simuladores web globais usam fórmulas em INGLÊS.", m:"3. AVISO: Simuladores web globais usam fórmulas em INGLÊS.", fc:"#dc2626", bl:1}},
+                        {r:15, c:0, v:{v:"Sempre use =VLOOKUP em vez de =PROCV (E use VÍRGULAS).", m:"Sempre use =VLOOKUP em vez de =PROCV (E use VÍRGULAS).", fc:"#dc2626"}},
+                        {r:16, c:0, v:{v:"Exemplo Real: =VLOOKUP(B9, A3:C6, 3, 0)", m:"Exemplo Real: =VLOOKUP(B9, A3:C6, 3, 0)", fc:"#64748b"}}
                     ],
                 "config": {
                     "columnlen": {
-                        "0": 380,
+                        "0": 400,
                         "1": 150,
                         "2": 150
                     }
