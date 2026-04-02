@@ -56,7 +56,7 @@ function initLuckySheet() {
     if (typeof luckysheet !== 'undefined' && !luckysheetInitialized) {
         luckysheet.create({
             container: 'luckysheet-container',
-            lang: 'en',
+            lang: 'pt',
             showinfobar: false,
             showsheetbar: true,
             data: [{
@@ -79,8 +79,8 @@ function initLuckySheet() {
                         {r:11, c:0, v:{v:"💡 Missão Diária:", m:"💡 Missão Diária:", bl:1, fc:"#ca8a04"}},
                         {r:12, c:0, v:{v:"1. Clique na célula azul B10 (ao lado de 'QUAL O PREÇO?').", m:"1. Clique na célula azul B10 (ao lado de 'QUAL O PREÇO?').", fc:"#64748b"}},
                         {r:13, c:0, v:{v:"2. Escreva a fórmula para extrair o preço baseando-se no Código 1002.", m:"2. Escreva a fórmula para extrair o preço baseando-se no Código 1002.", fc:"#64748b"}},
-                        {r:14, c:0, v:{v:"3. Lembrete: O motor do emulador está em inglês, use =VLOOKUP em vez de PROCV.", m:"3. Lembrete: O motor do emulador está em inglês, use =VLOOKUP em vez de PROCV.", fc:"#64748b"}},
-                        {r:15, c:0, v:{v:"Exemplo Real: =VLOOKUP(B9, A3:C6, 3, 0)", m:"Exemplo Real: =VLOOKUP(B9, A3:C6, 3, 0)", fc:"#64748b"}}
+                        {r:14, c:0, v:{v:"3. O emulador está em português, use o =PROCV igual no seu computador.", m:"3. O emulador está em português, use o =PROCV igual no seu computador.", fc:"#64748b"}},
+                        {r:15, c:0, v:{v:"Lembrete: Use vírgula no lugar do ponto e vírgula -> =PROCV(B9, A3:C6, 3, 0)", m:"Lembrete: Use vírgula no lugar do ponto e vírgula -> =PROCV(B9, A3:C6, 3, 0)", fc:"#64748b"}}
                     ],
                 "config": {
                     "columnlen": {
